@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 import orderBy from 'lodash/orderBy';
 import { IReduxState } from '../store/slices/state.interface';
 
-export const makeBondsArray = (mimBondDiscount?: string | number, mimTimeBondDiscount?: string | number) => {
+export const makeBondsArray = (daiBondDiscount?: string | number, daiClamBondDiscount?: string | number) => {
   return [
     {
-      name: 'MIM',
-      value: 'mim',
-      discount: Number(mimBondDiscount),
+      name: 'DAI',
+      value: 'dai',
+      discount: Number(daiBondDiscount),
     },
     {
-      name: 'TIME-MIM LP',
-      value: 'mim_time_lp',
-      discount: Number(mimTimeBondDiscount),
+      name: 'CLAM-DAI LP',
+      value: 'dai_clam_lp',
+      discount: Number(daiClamBondDiscount),
     },
   ];
 };
@@ -21,21 +21,21 @@ export const makeBondsArray = (mimBondDiscount?: string | number, mimTimeBondDis
 const BONDS_ARRAY = makeBondsArray();
 
 export const useBonds = () => {
-  const mimBondDiscount = useSelector<IReduxState, number>(state => {
-    return state.bonding['mim'] && state.bonding['mim'].bondDiscount;
+  const daiBondDiscount = useSelector<IReduxState, number>(state => {
+    return state.bonding['dai'] && state.bonding['dai'].bondDiscount;
   });
 
-  const mimTimeDiscount = useSelector<IReduxState, number>(state => {
-    return state.bonding['mim_time_lp'] && state.bonding['mim_time_lp'].bondDiscount;
+  const daiClamDiscount = useSelector<IReduxState, number>(state => {
+    return state.bonding['dai_clam_lp'] && state.bonding['dai_clam_lp'].bondDiscount;
   });
 
   const [bonds, setBonds] = useState(BONDS_ARRAY);
 
   useEffect(() => {
-    const bondValues = makeBondsArray(mimBondDiscount, mimTimeDiscount);
+    const bondValues = makeBondsArray(daiBondDiscount, daiClamDiscount);
     const mostProfitableBonds = orderBy(bondValues, 'discount', 'desc');
     setBonds(mostProfitableBonds);
-  }, [mimBondDiscount, mimTimeDiscount]);
+  }, [daiBondDiscount, daiClamDiscount]);
 
   return bonds;
 };

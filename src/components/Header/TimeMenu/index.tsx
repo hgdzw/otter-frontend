@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getAddresses, TOKEN_DECIMALS, DEFAULD_NETWORK } from '../../../constants';
+import { getAddresses, TOKEN_DECIMALS, DEFAULT_NETWORK } from '../../../constants';
 import { useSelector } from 'react-redux';
 import { Link, SvgIcon, Popper, Button, Paper, Typography, Divider, Box, Fade } from '@material-ui/core';
 import { ReactComponent as ArrowUpIcon } from '../../../assets/icons/arrow-up.svg';
@@ -35,13 +35,12 @@ function TimeMenu() {
   const isEthereumAPIAvailable = window.ethereum;
 
   const networkID = useSelector<IReduxState, number>(state => {
-    return (state.app && state.app.networkID) || DEFAULD_NETWORK;
+    return (state.app && state.app.networkID) || DEFAULT_NETWORK;
   });
 
   const addresses = getAddresses(networkID);
 
-  const MEMO_ADDRESS = addresses.MEMO_ADDRESS;
-  const TIME_ADDRESS = addresses.TIME_ADDRESS;
+  const { CLAM_ADDRESS, sCLAM_ADDRESS } = addresses;
 
   const handleClick = (event: any) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -58,7 +57,7 @@ function TimeMenu() {
         id="ohm-menu-button-hover"
       >
         <div className="ohm-button">
-          <p>TIME</p>
+          <p>CLAM</p>
         </div>
 
         <Popper id={id} open={open} anchorEl={anchorEl} transition>
@@ -68,7 +67,7 @@ function TimeMenu() {
                 <Paper className="ohm-menu" elevation={1}>
                   <Box component="div" className="buy-tokens">
                     <Link
-                      href={`https://www.traderjoexyz.com/#/trade?inputCurrency=&outputCurrency=${TIME_ADDRESS}`}
+                      href={`https://www.traderjoexyz.com/#/trade?inputCurrency=&outputCurrency=${CLAM_ADDRESS}`}
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -88,17 +87,17 @@ function TimeMenu() {
                         size="large"
                         variant="contained"
                         color="secondary"
-                        onClick={addTokenToWallet('TIME', TIME_ADDRESS)}
+                        onClick={addTokenToWallet('CLAM', CLAM_ADDRESS)}
                       >
-                        <Typography className="buy-text">TIME</Typography>
+                        <Typography className="buy-text">CLAM</Typography>
                       </Button>
                       <Button
                         variant="contained"
                         size="large"
                         color="secondary"
-                        onClick={addTokenToWallet('MEMO', MEMO_ADDRESS)}
+                        onClick={addTokenToWallet('sCLAM', sCLAM_ADDRESS)}
                       >
-                        <Typography className="buy-text">MEMO</Typography>
+                        <Typography className="buy-text">sCLAM</Typography>
                       </Button>
                     </Box>
                   ) : null}

@@ -12,12 +12,39 @@
       height: auto;
     }
   }
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .MuiBackdrop-root {
+      background: #2e66bbf2 !important;
+      backdrop-filter: blur(33px) !important;
+      -webkit-backdrop-filter: blur(33px) !important;
+      .ohm-card {
+        opacity: 1 !important;
+        height: auto;
+      }
+    }
+    .ohm-modal {
+      max-width: 688px;
+      min-height: 605px;
+    }
+  }
+
+  /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .MuiBackdrop-root {
+      background: #2e66bbf3  !important;
+      .ohm-card {
+        height: auto;
+      }
+    }
+    .ohm-modal {
+      max-width: 688px;
+      min-height: 605px;
+      opacity: 0.9;
+    }
+  }
+
   .ohm-card {
     max-width: 803px;
-  }
-  .ohm-modal {
-    max-width: 688px;
-    min-height: 605px;
   }
   .bond-header {
     display: flex;

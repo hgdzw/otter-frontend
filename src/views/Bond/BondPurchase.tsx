@@ -61,8 +61,8 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
 
   const vestingPeriod = () => {
     // return prettifySeconds(vestingTerm, "day");
-    const time = vestingTerm * BLOCK_RATE_SECONDS;
-    return prettifySeconds(time, 'seconds');
+    const clam = vestingTerm * BLOCK_RATE_SECONDS;
+    return prettifySeconds(clam, 'seconds');
   };
 
   async function onBond() {
@@ -200,14 +200,14 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
           <div className={`data-row`}>
             <p className="bond-balance-title">You Will Get</p>
             <p className="price-data bond-balance-title">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bondQuote, 4) || '0'} TIME`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bondQuote, 4) || '0'} CLAM`}
             </p>
           </div>
 
           <div className={`data-row`}>
             <p className="bond-balance-title">Max You Can Buy</p>
             <p className="price-data bond-balance-title">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(maxBondPrice, 4) || '0'} TIME`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(maxBondPrice, 4) || '0'} CLAM`}
             </p>
           </div>
 

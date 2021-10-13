@@ -1,4 +1,4 @@
 export const BONDS = {
-  mim: 'mim',
-  mim_time: 'mim_time_lp',
+  dai: 'dai',
+  dai_clam: 'dai_clam_lp',
 };

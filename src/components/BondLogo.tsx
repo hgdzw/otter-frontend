@@ -7,10 +7,10 @@ interface IBondHeaderProps {
 
 function BondHeader({ bond }: IBondHeaderProps) {
   const reserveAssetImg = () => {
-    if (bond.indexOf('time') >= 0) {
-      return getTokenImage('time');
-    } else if (bond.indexOf('mim') >= 0) {
-      return getTokenImage('mim');
+    if (bond.indexOf('clam') >= 0) {
+      return getTokenImage('clam');
+    } else if (bond.indexOf('dai') >= 0) {
+      return getTokenImage('dai');
     }
   };
 

@@ -105,12 +105,12 @@ p {
   backdrop-filter: blur(100px) !important;
 
   .web3modal-modal-card {
-    background: rgba(0, 0, 0, 0.2);
+    // background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(100px);
     border-radius: 10px;
 
     .web3modal-provider-wrapper {
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      // border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 0;
       padding: 0;
 
@@ -127,7 +127,7 @@ p {
           font-weight: 600;
           font-size: 24px;
           text-align: center;
-          color: #ffffff;
+          // color: #ffffff;
         }
 
         .web3modal-provider-description {
@@ -135,7 +135,7 @@ p {
           font-weight: 300;
           font-size: 14px;
           text-align: center;
-          color: rgba(255, 255, 255, 0.6);
+          // color: rgba(255, 255, 255, 0.6);
         }
       }
     }
@@ -159,7 +159,6 @@ p {
 
       p {
         margin-left: 24px;
-
         font-family: Montserrat SemiBold;
         font-style: normal;
         font-weight: 600;

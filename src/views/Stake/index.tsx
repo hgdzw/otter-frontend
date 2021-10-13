@@ -43,17 +43,17 @@ function Stake() {
   const fiveDayRate = useSelector<IReduxState, number>(state => {
     return state.app.fiveDayRate;
   });
-  const timeBalance = useSelector<IReduxState, string>(state => {
-    return state.account.balances && state.account.balances.time;
+  const clamBalance = useSelector<IReduxState, string>(state => {
+    return state.account.balances && state.account.balances.clam;
   });
-  const memoBalance = useSelector<IReduxState, string>(state => {
-    return state.account.balances && state.account.balances.memo;
+  const sClamBalance = useSelector<IReduxState, string>(state => {
+    return state.account.balances && state.account.balances.sClam;
   });
   const stakeAllowance = useSelector<IReduxState, number>(state => {
-    return state.account.staking && state.account.staking.timeStake;
+    return state.account.staking && state.account.staking.clamStake;
   });
   const unstakeAllowance = useSelector<IReduxState, number>(state => {
-    return state.account.staking && state.account.staking.memoUnstake;
+    return state.account.staking && state.account.staking.sClamUnstake;
   });
   const stakingRebase = useSelector<IReduxState, number>(state => {
     return state.app.stakingRebase;
@@ -71,9 +71,9 @@ function Stake() {
 
   const setMax = () => {
     if (view === 0) {
-      setQuantity(timeBalance);
+      setQuantity(clamBalance);
     } else {
-      setQuantity(memoBalance);
+      setQuantity(sClamBalance);
     }
   };
 
@@ -94,8 +94,8 @@ function Stake() {
 
   const hasAllowance = useCallback(
     token => {
-      if (token === 'time') return stakeAllowance > 0;
-      if (token === 'memo') return unstakeAllowance > 0;
+      if (token === 'CLAM') return stakeAllowance > 0;
+      if (token === 'sCLAM') return unstakeAllowance > 0;
       return 0;
     },
     [stakeAllowance],
@@ -105,10 +105,9 @@ function Stake() {
     setView(newView);
   };
 
-  const trimmedMemoBalance = trim(Number(memoBalance), 4);
-  const trimmedStakingAPY = trim(stakingAPY * 100, 1);
+  const trimmedSClamBalance = trim(Number(sClamBalance), 4);
   const stakingRebasePercentage = trim(stakingRebase * 100, 4);
-  const nextRewardValue = trim((Number(stakingRebasePercentage) / 100) * Number(trimmedMemoBalance), 4);
+  const nextRewardValue = trim((Number(stakingRebasePercentage) / 100) * Number(trimmedSClamBalance), 4);
 
   return (
     <div id="stake-view">
@@ -118,7 +117,7 @@ function Stake() {
             <Grid item>
               <div className="card-header">
                 <p className="single-stake-title">
-                  TIME Staking ({String.fromCodePoint(0x1f3a9)}, {String.fromCodePoint(0x1f3a9)})
+                  CLAM Staking ({String.fromCodePoint(0x1f9a6)}, {String.fromCodePoint(0x1f9a6)})
                 </p>
                 <RebaseTimer />
               </div>
@@ -127,12 +126,15 @@ function Stake() {
             <Grid item>
               <div className="stake-top-metrics">
                 <Grid container spacing={2}>
-                  <Grid item xs={12} sm={4} md={4} lg={6}>
+                  <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-apy">
                       <p className="single-stake-subtitle">APY</p>
                       <p className="single-stake-subtitle-value">
                         {stakingAPY ? (
-                          <>{new Intl.NumberFormat('en-US').format(Number(trimmedStakingAPY))}%</>
+                          new Intl.NumberFormat('en-US', {
+                            style: 'percent',
+                            notation: stakingAPY > 100000 ? 'engineering' : 'standard',
+                          }).format(stakingAPY)
                         ) : (
                           <Skeleton width="150px" />
                         )}
@@ -140,7 +142,7 @@ function Stake() {
                     </div>
                   </Grid>
 
-                  <Grid item xs={6} sm={4} md={4} lg={4}>
+                  <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-tvl">
                       <p className="single-stake-subtitle">TVL</p>
                       <p className="single-stake-subtitle-value">
@@ -162,7 +164,7 @@ function Stake() {
                     <div className="stake-index">
                       <p className="single-stake-subtitle">Current Index</p>
                       <p className="single-stake-subtitle-value">
-                        {currentIndex ? <>{trim(Number(currentIndex), 1)} TIME</> : <Skeleton width="150px" />}
+                        {currentIndex ? <>{trim(Number(currentIndex), 1)} CLAM</> : <Skeleton width="150px" />}
                       </p>
                     </div>
                   </Grid>
@@ -178,7 +180,7 @@ function Stake() {
                       <p>Connect Wallet</p>
                     </div>
                   </div>
-                  <p className="desc-text">Connect your wallet to stake TIME tokens!</p>
+                  <p className="desc-text">Connect your wallet to stake CLAM tokens!</p>
                 </div>
               ) : (
                 <>
@@ -218,7 +220,7 @@ function Stake() {
                       </FormControl>
 
                       <TabPanel value={view} index={0} className="stake-tab-panel">
-                        {address && hasAllowance('time') ? (
+                        {address && hasAllowance('CLAM') ? (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
@@ -226,14 +228,14 @@ function Stake() {
                               onChangeStake('stake');
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, 'staking', 'Stake TIME')}</p>
+                            <p>{txnButtonText(pendingTransactions, 'staking', 'Stake CLAM')}</p>
                           </div>
                         ) : (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
                               if (isPendingTxn(pendingTransactions, 'approve_staking')) return;
-                              onSeekApproval('time');
+                              onSeekApproval('CLAM');
                             }}
                           >
                             <p>{txnButtonText(pendingTransactions, 'approve_staking', 'Approve')}</p>
@@ -242,7 +244,7 @@ function Stake() {
                       </TabPanel>
 
                       <TabPanel value={view} index={1} className="stake-tab-panel">
-                        {address && hasAllowance('memo') ? (
+                        {address && hasAllowance('sCLAM') ? (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
@@ -250,14 +252,14 @@ function Stake() {
                               onChangeStake('unstake');
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, 'unstaking', 'Unstake TIME')}</p>
+                            <p>{txnButtonText(pendingTransactions, 'unstaking', 'Unstake CLAM')}</p>
                           </div>
                         ) : (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
                               if (isPendingTxn(pendingTransactions, 'approve_unstaking')) return;
-                              onSeekApproval('memo');
+                              onSeekApproval('sCLAM');
                             }}
                           >
                             <p>{txnButtonText(pendingTransactions, 'approve_unstaking', 'Approve')}</p>
@@ -267,7 +269,7 @@ function Stake() {
                     </Box>
 
                     <div className="help-text">
-                      {address && ((!hasAllowance('time') && view === 0) || (!hasAllowance('memo') && view === 1)) && (
+                      {address && ((!hasAllowance('CLAM') && view === 0) || (!hasAllowance('sCLAM') && view === 1)) && (
                         <p className="text-desc">
                           Note: The "Approve" transaction is only needed when staking/unstaking for the first time;
                           subsequent staking/unstaking only requires you to perform the "Stake" or "Unstake"
@@ -281,7 +283,7 @@ function Stake() {
                     <div className="data-row">
                       <p className="data-row-name">Your Balance</p>
                       <p className="data-row-value">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(timeBalance), 4)} TIME</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(Number(clamBalance), 4)} CLAM</>}
                       </p>
                     </div>
 
@@ -291,7 +293,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{new Intl.NumberFormat('en-US').format(Number(trimmedMemoBalance))} MEMO</>
+                          <>{new Intl.NumberFormat('en-US').format(Number(trimmedSClamBalance))} sCLAM</>
                         )}
                       </p>
                     </div>
@@ -299,7 +301,7 @@ function Stake() {
                     <div className="data-row">
                       <p className="data-row-name">Next Reward Amount</p>
                       <p className="data-row-value">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} MEMO</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sCLAM</>}
                       </p>
                     </div>
 

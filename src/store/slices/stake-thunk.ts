@@ -23,21 +23,21 @@ export const changeApproval = createAsyncThunk(
     const addresses = getAddresses(networkID);
 
     const signer = provider.getSigner();
-    const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, signer);
-    const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, signer);
+    const clamContract = new ethers.Contract(addresses.CLAM_ADDRESS, TimeTokenContract, signer);
+    const sCLAMContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, signer);
 
     let approveTx;
     try {
-      if (token === 'time') {
-        approveTx = await timeContract.approve(addresses.STAKING_HELPER_ADDRESS, ethers.constants.MaxUint256);
+      if (token === 'CLAM') {
+        approveTx = await clamContract.approve(addresses.STAKING_HELPER_ADDRESS, ethers.constants.MaxUint256);
       }
 
-      if (token === 'memo') {
-        approveTx = await memoContract.approve(addresses.STAKING_ADDRESS, ethers.constants.MaxUint256);
+      if (token === 'sCLAM') {
+        approveTx = await sCLAMContract.approve(addresses.STAKING_ADDRESS, ethers.constants.MaxUint256);
       }
 
-      const text = 'Approve ' + (token === 'time' ? 'Staking' : 'Unstaking');
-      const pendingTxnType = token === 'time' ? 'approve_staking' : 'approve_unstaking';
+      const text = 'Approve ' + (token === 'CLAM' ? 'Staking' : 'Unstaking');
+      const pendingTxnType = token === 'CLAM' ? 'approve_staking' : 'approve_unstaking';
 
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
 
@@ -51,14 +51,14 @@ export const changeApproval = createAsyncThunk(
       }
     }
 
-    const stakeAllowance = await timeContract.allowance(address, addresses.STAKING_HELPER_ADDRESS);
-    const unstakeAllowance = await memoContract.allowance(address, addresses.STAKING_ADDRESS); //TODO
+    const stakeAllowance = await clamContract.allowance(address, addresses.STAKING_HELPER_ADDRESS);
+    const unstakeAllowance = await sCLAMContract.allowance(address, addresses.STAKING_ADDRESS); //TODO
 
     return dispatch(
       fetchAccountSuccess({
         staking: {
-          timeStake: +stakeAllowance,
-          memoUnstake: +unstakeAllowance,
+          clamStake: +stakeAllowance,
+          sCLAMUnstake: +unstakeAllowance,
         },
       }),
     );

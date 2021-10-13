@@ -36,30 +36,30 @@ export const loadAppDetails = createAsyncThunk(
   'app/loadAppDetails',
   //@ts-ignore
   async ({ networkID, provider }: ILoadAppDetails) => {
-    const mimPrice = await getTokenPrice('MIM');
+    const daiPrice = await getTokenPrice('DAI');
 
     const stakingTVL = 0;
 
     const addresses = getAddresses(networkID);
-    const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
     const currentBlock = await provider.getBlockNumber();
     const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
-    const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, provider);
-    const bondCalculator = new ethers.Contract(addresses.TIME_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
-    let token = contractForReserve(BONDS.mim, networkID, provider);
-    const mimAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
+    const sCLAMContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, provider);
+    const bondCalculator = new ethers.Contract(addresses.CLAM_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
+    let token = contractForReserve(BONDS.dai, networkID, provider);
+    const daiAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
 
-    token = contractForReserve(BONDS.mim_time, networkID, provider);
-    const mimTimeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
-    const valuation = await bondCalculator.valuation(addressForAsset(BONDS.mim_time, networkID), mimTimeAmount);
-    const markdown = await bondCalculator.markdown(addressForAsset(BONDS.mim_time, networkID));
-    let mimTimeUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
+    token = contractForReserve(BONDS.dai_clam, networkID, provider);
+    const daiClamAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
+    const valuation = await bondCalculator.valuation(addressForAsset(BONDS.dai_clam, networkID), daiClamAmount);
+    const markdown = await bondCalculator.markdown(addressForAsset(BONDS.dai_clam, networkID));
+    let daiClamUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
 
-    const treasuryBalance = mimAmount / Math.pow(10, 18) + mimTimeUSD;
+    const treasuryBalance = daiAmount / Math.pow(10, 18) + daiClamUSD;
 
+    const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
     const epoch = await stakingContract.epoch();
     const stakingReward = epoch.distribute;
-    const circ = await memoContract.circulatingSupply();
+    const circ = await sCLAMContract.circulatingSupply();
     const stakingRebase = stakingReward / circ;
     const fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
     const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
@@ -77,7 +77,7 @@ export const loadAppDetails = createAsyncThunk(
       stakingAPY,
       stakingTVL,
       stakingRebase,
-      marketPrice: (marketPrice / Math.pow(10, 9)) * mimPrice,
+      marketPrice: (marketPrice / Math.pow(10, 9)) * daiPrice,
       currentBlockTime,
       nextRebase,
     };

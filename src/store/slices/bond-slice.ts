@@ -49,11 +49,11 @@ export const changeApproval = createAsyncThunk(
 
     let approveTx;
     try {
-      if (bond === BONDS.mim) {
-        approveTx = await reserveContract.approve(addresses.BONDS.MIM, constants.MaxUint256);
+      if (bond === BONDS.dai) {
+        approveTx = await reserveContract.approve(addresses.BONDS.DAI, constants.MaxUint256);
       }
-      if (bond === BONDS.mim_time) {
-        approveTx = await reserveContract.approve(addresses.BONDS.MIM_TIME, constants.MaxUint256);
+      if (bond === BONDS.dai_clam) {
+        approveTx = await reserveContract.approve(addresses.BONDS.DAI_CLAM, constants.MaxUint256);
       }
       dispatch(
         fetchPendingTxns({ txnHash: approveTx.hash, text: 'Approving ' + bondName(bond), type: 'approve_' + bond }),
@@ -70,14 +70,14 @@ export const changeApproval = createAsyncThunk(
     let allowance,
       balance = '0';
 
-    if (bond === BONDS.mim) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.MIM);
+    if (bond === BONDS.dai) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatEther(balance);
     }
 
-    if (bond === BONDS.mim_time) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.MIM_TIME);
+    if (bond === BONDS.dai_clam) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI_CLAM);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatUnits(balance, 'ether');
     }
@@ -116,7 +116,7 @@ export const calcBondDetails = createAsyncThunk(
 
     const bondContract = contractForBond(bond, networkID, provider);
 
-    const bondCalcContract = new ethers.Contract(addresses.TIME_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
+    const bondCalcContract = new ethers.Contract(addresses.CLAM_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
 
     const terms = await bondContract.terms();
 
@@ -126,8 +126,8 @@ export const calcBondDetails = createAsyncThunk(
     const debtRatio = standardizedDebtRatio / Math.pow(10, 9);
 
     let marketPrice = await getMarketPrice(networkID, provider);
-    const mimPrice = await getTokenPrice('MIM');
-    marketPrice = (marketPrice / Math.pow(10, 9)) * mimPrice;
+    const daiPrice = await getTokenPrice('DAI');
+    marketPrice = (marketPrice / Math.pow(10, 9)) * daiPrice;
 
     try {
       bondPrice = await bondContract.bondPriceInUSD();
@@ -136,8 +136,8 @@ export const calcBondDetails = createAsyncThunk(
       console.log('error getting bondPriceInUSD', e);
     }
 
-    if (bond === BONDS.mim_time) {
-      valuation = await bondCalcContract.valuation(addresses.RESERVES.MIM_TIME, amountInWei);
+    if (bond === BONDS.dai_clam) {
+      valuation = await bondCalcContract.valuation(addresses.RESERVES.DAI_CLAM, amountInWei);
       bondQuote = await bondContract.payoutFor(valuation);
       bondQuote = bondQuote / Math.pow(10, 9);
     } else {
@@ -150,7 +150,7 @@ export const calcBondDetails = createAsyncThunk(
       alert(
         "You're trying to bond more than the maximum payout available! The maximum bond payout is " +
           (maxBondPrice / Math.pow(10, 9)).toFixed(2).toString() +
-          ' TIME.',
+          ' CLAM.',
       );
     }
 

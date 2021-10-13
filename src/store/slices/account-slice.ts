@@ -31,29 +31,28 @@ interface IUserBindDetails {
 
 export interface IAccount {
   balances: {
-    mim: string;
-    memo: string;
-    time: string;
+    dai: string;
+    sClam: string;
+    clam: string;
   };
   staking: {
-    timeStake: number;
-    memoUnstake: number;
+    clamStake: number;
+    sClamUnstake: number;
   };
-  mim: IUserBindDetails;
 }
 
 export const getBalances = createAsyncThunk(
   'account/getBalances',
   async ({ address, networkID, provider }: IAccountProps) => {
     const addresses = getAddresses(networkID);
-    const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, provider);
-    const memoBalance = await memoContract.balanceOf(address);
-    const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, provider);
-    const timeBalance = await timeContract.balanceOf(address);
+    const sClamContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, provider);
+    const sClamBalance = await sClamContract.balanceOf(address);
+    const clamContract = new ethers.Contract(addresses.CLAM_ADDRESS, TimeTokenContract, provider);
+    const clamBalance = await clamContract.balanceOf(address);
     return {
       balances: {
-        memo: ethers.utils.formatUnits(memoBalance, 'gwei'),
-        time: ethers.utils.formatUnits(timeBalance, 'gwei'),
+        sClam: ethers.utils.formatUnits(sClamBalance, 'gwei'),
+        clam: ethers.utils.formatUnits(clamBalance, 'gwei'),
       },
     };
   },
@@ -61,38 +60,38 @@ export const getBalances = createAsyncThunk(
 
 export const loadAccountDetails = createAsyncThunk(
   'account/loadAccountDetails',
-  async ({ networkID, provider, address }: IAccountProps) => {
-    let timeBalance = 0;
-    let memoBalance = 0;
+  async ({ networkID, provider, address }: IAccountProps): Promise<IAccount> => {
+    let clamBalance = 0;
+    let sClamBalance = 0;
     let stakeAllowance = 0;
     let unstakeAllowance = 0;
 
     const addresses = getAddresses(networkID);
 
-    const mimContract = new ethers.Contract(addresses.MIM_ADDRESS, MimTokenContract, provider);
-    const mimBalance = await mimContract.balanceOf(address);
+    const daiContract = new ethers.Contract(addresses.DAI_ADDRESS, MimTokenContract, provider);
+    const daiBalance = await daiContract.balanceOf(address);
 
-    if (addresses.TIME_ADDRESS) {
-      const timeContract = new ethers.Contract(addresses.TIME_ADDRESS, TimeTokenContract, provider);
-      timeBalance = await timeContract.balanceOf(address);
-      stakeAllowance = await timeContract.allowance(address, addresses.STAKING_HELPER_ADDRESS);
+    if (addresses.CLAM_ADDRESS) {
+      const clamContract = new ethers.Contract(addresses.CLAM_ADDRESS, TimeTokenContract, provider);
+      clamBalance = await clamContract.balanceOf(address);
+      stakeAllowance = await clamContract.allowance(address, addresses.STAKING_HELPER_ADDRESS);
     }
 
-    if (addresses.MEMO_ADDRESS) {
-      const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, provider);
-      memoBalance = await memoContract.balanceOf(address);
-      unstakeAllowance = await memoContract.allowance(address, addresses.STAKING_ADDRESS);
+    if (addresses.sCLAM_ADDRESS) {
+      const sClamContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, provider);
+      sClamBalance = await sClamContract.balanceOf(address);
+      unstakeAllowance = await sClamContract.allowance(address, addresses.STAKING_ADDRESS);
     }
 
     return {
       balances: {
-        memo: ethers.utils.formatUnits(memoBalance, 'gwei'),
-        time: ethers.utils.formatUnits(timeBalance, 'gwei'),
-        mim: ethers.utils.formatEther(mimBalance),
+        sClam: ethers.utils.formatUnits(sClamBalance, 'gwei'),
+        clam: ethers.utils.formatUnits(clamBalance, 'gwei'),
+        dai: ethers.utils.formatEther(daiBalance),
       },
       staking: {
-        timeStake: +stakeAllowance,
-        memoUnstake: +unstakeAllowance,
+        clamStake: +stakeAllowance,
+        sClamUnstake: +unstakeAllowance,
       },
     };
   },
@@ -124,14 +123,14 @@ export const calculateUserBondDetails = createAsyncThunk(
     let allowance,
       balance = '0';
 
-    if (bond === BONDS.mim) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.MIM);
+    if (bond === BONDS.dai) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatEther(balance);
     }
 
-    if (bond === BONDS.mim_time) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.MIM_TIME);
+    if (bond === BONDS.dai_clam) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI_CLAM);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatUnits(balance, 'ether');
     }

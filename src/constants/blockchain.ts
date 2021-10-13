@@ -14,4 +14,4 @@ export const RPCURL = {
   POLYGON_MUMBAI: 'https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99',
 };
 
-export const DEFAULD_NETWORK = Networks.POLYGON_MUMBAI;
+export const DEFAULT_NETWORK = Networks.POLYGON_MUMBAI;
