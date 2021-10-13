@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import { secondsUntilBlock, prettifySeconds } from "../../helpers";
-import { Box } from "@material-ui/core";
-import "./rebasetimer.scss";
-import { Skeleton } from "@material-ui/lab";
-import { useMemo } from "react";
-import { IReduxState } from "../../store/slices/state.interface";
+import { useSelector } from 'react-redux';
+import { secondsUntilBlock, prettifySeconds } from '../../helpers';
+import { Box } from '@material-ui/core';
+import './rebasetimer.scss';
+import { Skeleton } from '@material-ui/lab';
+import { useMemo } from 'react';
+import { IReduxState } from '../../store/slices/state.interface';
 
 function RebaseTimer() {
   const currentBlock = useSelector<IReduxState, number>(state => {

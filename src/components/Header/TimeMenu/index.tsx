@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { getAddresses, TOKEN_DECIMALS, DEFAULD_NETWORK } from "../../../constants";
-import { useSelector } from "react-redux";
-import { Link, SvgIcon, Popper, Button, Paper, Typography, Divider, Box, Fade } from "@material-ui/core";
-import { ReactComponent as ArrowUpIcon } from "../../../assets/icons/arrow-up.svg";
-import "./ohmmenu.scss";
-import { IReduxState } from "../../../store/slices/state.interface";
-import { getTokenUrl } from "../../../helpers";
+import { useState } from 'react';
+import { getAddresses, TOKEN_DECIMALS, DEFAULD_NETWORK } from '../../../constants';
+import { useSelector } from 'react-redux';
+import { Link, SvgIcon, Popper, Button, Paper, Typography, Divider, Box, Fade } from '@material-ui/core';
+import { ReactComponent as ArrowUpIcon } from '../../../assets/icons/arrow-up.svg';
+import './ohmmenu.scss';
+import { IReduxState } from '../../../store/slices/state.interface';
+import { getTokenUrl } from '../../../helpers';
 
 const addTokenToWallet = (tokenSymbol: string, tokenAddress: string) => async () => {
   const tokenImage = getTokenUrl(tokenSymbol.toLowerCase());
@@ -13,9 +13,9 @@ const addTokenToWallet = (tokenSymbol: string, tokenAddress: string) => async ()
   if (window.ethereum) {
     try {
       await window.ethereum.request({
-        method: "wallet_watchAsset",
+        method: 'wallet_watchAsset',
         params: {
-          type: "ERC20",
+          type: 'ERC20',
           options: {
             address: tokenAddress,
             symbol: tokenSymbol,
@@ -48,7 +48,7 @@ function TimeMenu() {
   };
 
   const open = Boolean(anchorEl);
-  const id = "ohm-popper";
+  const id = 'ohm-popper';
   return (
     <>
       <Box
@@ -88,7 +88,7 @@ function TimeMenu() {
                         size="large"
                         variant="contained"
                         color="secondary"
-                        onClick={addTokenToWallet("TIME", TIME_ADDRESS)}
+                        onClick={addTokenToWallet('TIME', TIME_ADDRESS)}
                       >
                         <Typography className="buy-text">TIME</Typography>
                       </Button>
@@ -96,7 +96,7 @@ function TimeMenu() {
                         variant="contained"
                         size="large"
                         color="secondary"
-                        onClick={addTokenToWallet("MEMO", MEMO_ADDRESS)}
+                        onClick={addTokenToWallet('MEMO', MEMO_ADDRESS)}
                       >
                         <Typography className="buy-text">MEMO</Typography>
                       </Button>

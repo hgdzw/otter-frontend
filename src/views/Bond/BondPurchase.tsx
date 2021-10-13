@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Box, InputLabel, OutlinedInput, InputAdornment, Slide, FormControl } from "@material-ui/core";
-import { shorten, trim, prettifySeconds } from "../../helpers";
-import { changeApproval, bondAsset, calcBondDetails } from "../../store/slices/bond-slice";
-import { useWeb3Context } from "../../hooks";
-import { IPendingTxn, isPendingTxn, txnButtonText } from "../../store/slices/pending-txns-slice";
-import { Skeleton } from "@material-ui/lab";
-import { IReduxState } from "../../store/slices/state.interface";
-import { BLOCK_RATE_SECONDS } from "src/constants";
+import { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Box, InputLabel, OutlinedInput, InputAdornment, Slide, FormControl } from '@material-ui/core';
+import { shorten, trim, prettifySeconds } from '../../helpers';
+import { changeApproval, bondAsset, calcBondDetails } from '../../store/slices/bond-slice';
+import { useWeb3Context } from '../../hooks';
+import { IPendingTxn, isPendingTxn, txnButtonText } from '../../store/slices/pending-txns-slice';
+import { Skeleton } from '@material-ui/lab';
+import { IReduxState } from '../../store/slices/state.interface';
+import { BLOCK_RATE_SECONDS } from 'src/constants';
 
 interface IBondPurchaseProps {
   bond: string;
@@ -19,7 +19,7 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   const { provider, address, chainID } = useWeb3Context();
 
   const [recipientAddress, setRecipientAddress] = useState(address);
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState('');
 
   const isBondLoading = useSelector<IReduxState, boolean>(state => state.bonding.loading ?? true);
   const vestingTerm = useSelector<IReduxState, number>(state => {
@@ -62,18 +62,18 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   const vestingPeriod = () => {
     // return prettifySeconds(vestingTerm, "day");
     const time = vestingTerm * BLOCK_RATE_SECONDS;
-    return prettifySeconds(time, "seconds");
+    return prettifySeconds(time, 'seconds');
   };
 
   async function onBond() {
-    if (quantity === "") {
-      alert("Please enter a value!");
+    if (quantity === '') {
+      alert('Please enter a value!');
       //@ts-ignore
     } else if (isNaN(quantity)) {
-      alert("Please enter a valid value!");
+      alert('Please enter a valid value!');
     } else if (interestDue > 0 || pendingPayout > 0) {
       const shouldProceed = window.confirm(
-        "You have an existing bond. Bonding will reset your vesting period and forfeit rewards. We recommend claiming rewards first or using a fresh wallet. Do you still want to proceed?",
+        'You have an existing bond. Bonding will reset your vesting period and forfeit rewards. We recommend claiming rewards first or using a fresh wallet. Do you still want to proceed?',
       );
       if (shouldProceed) {
         await dispatch(
@@ -107,12 +107,12 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   }, [allowance]);
 
   const setMax = () => {
-    setQuantity((balance || "").toString());
+    setQuantity((balance || '').toString());
   };
 
   const balanceUnits = () => {
-    if (bond.indexOf("_lp") >= 0) return "LP";
-    else return "MIM";
+    if (bond.indexOf('_lp') >= 0) return 'LP';
+    else return 'MIM';
   };
 
   async function loadBondDetails() {
@@ -154,21 +154,21 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
           <div
             className="transaction-button bond-approve-btn"
             onClick={async () => {
-              if (isPendingTxn(pendingTransactions, "bond_" + bond)) return;
+              if (isPendingTxn(pendingTransactions, 'bond_' + bond)) return;
               await onBond();
             }}
           >
-            <p>{txnButtonText(pendingTransactions, "bond_" + bond, "Bond")}</p>
+            <p>{txnButtonText(pendingTransactions, 'bond_' + bond, 'Bond')}</p>
           </div>
         ) : (
           <div
             className="transaction-button bond-approve-btn"
             onClick={async () => {
-              if (isPendingTxn(pendingTransactions, "approve_" + bond)) return;
+              if (isPendingTxn(pendingTransactions, 'approve_' + bond)) return;
               await onSeekApproval();
             }}
           >
-            <p>{txnButtonText(pendingTransactions, "approve_" + bond, "Approve")}</p>
+            <p>{txnButtonText(pendingTransactions, 'approve_' + bond, 'Approve')}</p>
           </div>
         )}
 
@@ -200,14 +200,14 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
           <div className={`data-row`}>
             <p className="bond-balance-title">You Will Get</p>
             <p className="price-data bond-balance-title">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bondQuote, 4) || "0"} TIME`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(bondQuote, 4) || '0'} TIME`}
             </p>
           </div>
 
           <div className={`data-row`}>
             <p className="bond-balance-title">Max You Can Buy</p>
             <p className="price-data bond-balance-title">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(maxBondPrice, 4) || "0"} TIME`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(maxBondPrice, 4) || '0'} TIME`}
             </p>
           </div>
 

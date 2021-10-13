@@ -1,10 +1,10 @@
-import { ethers } from "ethers";
-import { getAddresses } from "../../constants";
-import { StakingHelperContract, TimeTokenContract, MemoTokenContract, StakingContract } from "../../abi";
-import { clearPendingTxn, fetchPendingTxns, getStakingTypeText } from "./pending-txns-slice";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchAccountSuccess, getBalances } from "./account-slice";
-import { JsonRpcProvider } from "@ethersproject/providers";
+import { ethers } from 'ethers';
+import { getAddresses } from '../../constants';
+import { StakingHelperContract, TimeTokenContract, MemoTokenContract, StakingContract } from '../../abi';
+import { clearPendingTxn, fetchPendingTxns, getStakingTypeText } from './pending-txns-slice';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchAccountSuccess, getBalances } from './account-slice';
+import { JsonRpcProvider } from '@ethersproject/providers';
 
 interface IChangeApproval {
   token: string;
@@ -14,10 +14,10 @@ interface IChangeApproval {
 }
 
 export const changeApproval = createAsyncThunk(
-  "stake/changeApproval",
+  'stake/changeApproval',
   async ({ token, provider, address, networkID }: IChangeApproval, { dispatch }) => {
     if (!provider) {
-      alert("Please connect your wallet!");
+      alert('Please connect your wallet!');
       return;
     }
     const addresses = getAddresses(networkID);
@@ -28,16 +28,16 @@ export const changeApproval = createAsyncThunk(
 
     let approveTx;
     try {
-      if (token === "time") {
+      if (token === 'time') {
         approveTx = await timeContract.approve(addresses.STAKING_HELPER_ADDRESS, ethers.constants.MaxUint256);
       }
 
-      if (token === "memo") {
+      if (token === 'memo') {
         approveTx = await memoContract.approve(addresses.STAKING_ADDRESS, ethers.constants.MaxUint256);
       }
 
-      const text = "Approve " + (token === "time" ? "Staking" : "Unstaking");
-      const pendingTxnType = token === "time" ? "approve_staking" : "approve_unstaking";
+      const text = 'Approve ' + (token === 'time' ? 'Staking' : 'Unstaking');
+      const pendingTxnType = token === 'time' ? 'approve_staking' : 'approve_unstaking';
 
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
 
@@ -74,10 +74,10 @@ interface IChangeStake {
 }
 
 export const changeStake = createAsyncThunk(
-  "stake/changeStake",
+  'stake/changeStake',
   async ({ action, value, provider, address, networkID }: IChangeStake, { dispatch }) => {
     if (!provider) {
-      alert("Please connect your wallet!");
+      alert('Please connect your wallet!');
       return;
     }
     const addresses = getAddresses(networkID);
@@ -88,18 +88,18 @@ export const changeStake = createAsyncThunk(
     let stakeTx;
 
     try {
-      if (action === "stake") {
-        const number = ethers.utils.parseUnits(value, "gwei");
+      if (action === 'stake') {
+        const number = ethers.utils.parseUnits(value, 'gwei');
         stakeTx = await stakingHelper.stake(number);
       } else {
-        stakeTx = await staking.unstake(ethers.utils.parseUnits(value, "gwei"), true);
+        stakeTx = await staking.unstake(ethers.utils.parseUnits(value, 'gwei'), true);
       }
-      const pendingTxnType = action === "stake" ? "staking" : "unstaking";
+      const pendingTxnType = action === 'stake' ? 'staking' : 'unstaking';
       dispatch(fetchPendingTxns({ txnHash: stakeTx.hash, text: getStakingTypeText(action), type: pendingTxnType }));
       await stakeTx.wait();
     } catch (error) {
-      if (error.code === -32603 && error.message.indexOf("ds-math-sub-underflow") >= 0) {
-        alert("You may be trying to stake more than your balance! Error code: 32603. Message: ds-math-sub-underflow");
+      if (error.code === -32603 && error.message.indexOf('ds-math-sub-underflow') >= 0) {
+        alert('You may be trying to stake more than your balance! Error code: 32603. Message: ds-math-sub-underflow');
       } else {
         alert(error.message);
       }

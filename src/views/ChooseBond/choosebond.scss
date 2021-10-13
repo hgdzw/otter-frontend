@@ -136,15 +136,15 @@
   }
 }
 
-.bond-title{
+.bond-title {
   font-family: Montserrat Bold;
   font-weight: bold;
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.bond-hero{
-  .bond-hero-title{
+.bond-hero {
+  .bond-hero-title {
     font-family: Montserrat Medium;
     font-weight: 500;
     font-size: 20px;
@@ -152,59 +152,59 @@
     color: rgba(255, 255, 255, 0.6);
   }
 
-  .bond-hero-value{
+  .bond-hero-value {
     font-family: Montserrat Bold;
     font-weight: bold;
     font-size: 24px;
     line-height: 29px;
-    color: #FFFFFF;
+    color: #ffffff;
     display: flex;
     align-items: center;
     flex-direction: column;
   }
 }
 
-.bond-table-title{
+.bond-table-title {
   font-family: Montserrat SemiBold;
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.bond-name-title{
+.bond-name-title {
   font-family: Montserrat SemiBold;
   font-weight: 600;
   font-size: 14px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.bond-table-btn{
+.bond-table-btn {
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid #2C276D;
+  border: 1px solid #2c276d;
   border-radius: 10px;
   padding: 6px 35.5px;
   text-align: center;
 
-  p{
+  p {
     font-family: Montserrat Semibold;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
 @media screen and (max-width: 417px) {
-  .bond-hero-title{
+  .bond-hero-title {
     font-size: 14px !important;
   }
 
-  .bond-hero-value{
+  .bond-hero-value {
     font-size: 16px !important;
   }
 }
 
-.ohm-card-container{
+.ohm-card-container {
   width: 100%;
 }

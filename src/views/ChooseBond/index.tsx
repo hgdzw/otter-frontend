@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import {
   Paper,
   Grid,
@@ -10,19 +10,19 @@ import {
   TableHead,
   TableRow,
   Zoom,
-} from "@material-ui/core";
-import { BondTableData, BondDataCard } from "./BondRow";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { trim } from "../../helpers";
-import { useBonds } from "../../hooks";
-import "./choosebond.scss";
-import { Skeleton } from "@material-ui/lab";
-import { IReduxState } from "../../store/slices/state.interface";
+} from '@material-ui/core';
+import { BondTableData, BondDataCard } from './BondRow';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { trim } from '../../helpers';
+import { useBonds } from '../../hooks';
+import './choosebond.scss';
+import { Skeleton } from '@material-ui/lab';
+import { IReduxState } from '../../store/slices/state.interface';
 
 function ChooseBond() {
   const bonds = useBonds();
-  const isSmallScreen = useMediaQuery("(max-width: 733px)"); // change to breakpoint query
-  const isVerySmallScreen = useMediaQuery("(max-width: 420px)");
+  const isSmallScreen = useMediaQuery('(max-width: 733px)'); // change to breakpoint query
+  const isVerySmallScreen = useMediaQuery('(max-width: 420px)');
 
   const isAppLoading = useSelector<IReduxState, boolean>(state => state.app.loading);
   const marketPrice = useSelector<IReduxState, number>(state => {
@@ -43,17 +43,17 @@ function ChooseBond() {
             </p>
           </Box>
 
-          <Grid container item xs={12} style={{ margin: "10px 0px 20px" }} className="bond-hero">
+          <Grid container item xs={12} style={{ margin: '10px 0px 20px' }} className="bond-hero">
             <Grid item xs={6}>
-              <Box textAlign={`${isVerySmallScreen ? "left" : "center"}`}>
+              <Box textAlign={`${isVerySmallScreen ? 'left' : 'center'}`}>
                 <p className="bond-hero-title">Treasury Balance</p>
                 <p className="bond-hero-value">
                   {isAppLoading ? (
                     <Skeleton width="180px" />
                   ) : (
-                    new Intl.NumberFormat("en-US", {
-                      style: "currency",
-                      currency: "USD",
+                    new Intl.NumberFormat('en-US', {
+                      style: 'currency',
+                      currency: 'USD',
                       maximumFractionDigits: 0,
                       minimumFractionDigits: 0,
                     }).format(treasuryBalance)
@@ -63,7 +63,7 @@ function ChooseBond() {
             </Grid>
 
             <Grid item xs={6} className={`ohm-price`}>
-              <Box textAlign={`${isVerySmallScreen ? "right" : "center"}`}>
+              <Box textAlign={`${isVerySmallScreen ? 'right' : 'center'}`}>
                 <p className="bond-hero-title">TIME Price</p>
                 <p className="bond-hero-value">
                   {isAppLoading ? <Skeleton width="100px" /> : `$${trim(marketPrice, 2)}`}

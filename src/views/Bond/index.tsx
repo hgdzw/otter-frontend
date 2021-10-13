@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { trim } from "../../helpers";
-import { Grid, Backdrop, Paper, Box, Tab, Tabs, Fade } from "@material-ui/core";
-import TabPanel from "../../components/TabPanel";
-import BondHeader from "./BondHeader";
-import BondRedeem from "./BondRedeem";
-import BondPurchase from "./BondPurchase";
-import "./bond.scss";
-import { useWeb3Context } from "../../hooks";
-import { Skeleton } from "@material-ui/lab";
-import { IReduxState } from "../../store/slices/state.interface";
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { trim } from '../../helpers';
+import { Grid, Backdrop, Paper, Box, Tab, Tabs, Fade } from '@material-ui/core';
+import TabPanel from '../../components/TabPanel';
+import BondHeader from './BondHeader';
+import BondRedeem from './BondRedeem';
+import BondPurchase from './BondPurchase';
+import './bond.scss';
+import { useWeb3Context } from '../../hooks';
+import { Skeleton } from '@material-ui/lab';
+import { IReduxState } from '../../store/slices/state.interface';
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -55,7 +55,7 @@ function Bond({ bond }: IBondProps) {
     setView(newView);
   };
 
-  let bondToken = "MIM";
+  let bondToken = 'MIM';
 
   return (
     <Fade in={true} mountOnEnter unmountOnExit>
@@ -77,7 +77,7 @@ function Bond({ bond }: IBondProps) {
                   <p className="bond-price-data-value">
                     {isBondLoading ? (
                       <Skeleton />
-                    ) : bond.indexOf("lp") >= 0 ? (
+                    ) : bond.indexOf('lp') >= 0 ? (
                       `$${trim(bondPrice, 2)}`
                     ) : (
                       `${trim(bondPrice, 2)} ${bondToken}`

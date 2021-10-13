@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Box, Button, SvgIcon, Typography, Popper, Paper, Divider, Link, Slide } from "@material-ui/core";
-import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
-import { ReactComponent as CaretDownIcon } from "../../assets/icons/caret-down.svg";
-import { useWeb3Context } from "../../hooks";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Box, Button, SvgIcon, Typography, Popper, Paper, Divider, Link, Slide } from '@material-ui/core';
+import { ReactComponent as ArrowUpIcon } from '../../assets/icons/arrow-up.svg';
+import { ReactComponent as CaretDownIcon } from '../../assets/icons/caret-down.svg';
+import { useWeb3Context } from '../../hooks';
 
 function ConnectMenu() {
   const { connect, disconnect, connected, web3, chainID } = useWeb3Context();
@@ -16,7 +16,7 @@ function ConnectMenu() {
     return state.pendingTransactions;
   });
 
-  let buttonText = "Connect Wallet";
+  let buttonText = 'Connect Wallet';
   let clickFunc: any = connect;
 
   const handleClick = (event: any) => {
@@ -24,24 +24,24 @@ function ConnectMenu() {
   };
 
   if (isConnected) {
-    buttonText = "Disconnect";
+    buttonText = 'Disconnect';
     clickFunc = disconnect;
   }
 
   if (pendingTransactions && pendingTransactions.length > 0) {
-    buttonText = "In progress";
+    buttonText = 'In progress';
     clickFunc = handleClick;
   }
 
   const open = Boolean(anchorEl);
-  const id = open ? "ohm-popper-pending" : undefined;
+  const id = open ? 'ohm-popper-pending' : undefined;
 
-  const primaryColor = "#49A1F2";
+  const primaryColor = '#49A1F2';
   const buttonStyles =
-    "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
+    'pending-txn-container' + (isHovering && pendingTransactions.length > 0 ? ' hovered-button' : '');
 
   const getEtherscanUrl = (txnHash: string) => {
-    return chainID === 4 ? "https://rinkeby.etherscan.io/tx/" + txnHash : "https://etherscan.io/tx/" + txnHash;
+    return chainID === 4 ? 'https://rinkeby.etherscan.io/tx/' + txnHash : 'https://etherscan.io/tx/' + txnHash;
   };
 
   useEffect(() => {
@@ -82,7 +82,7 @@ function ConnectMenu() {
           ))}
           <Box className="add-tokens">
             <Divider color="secondary" />
-            <Button variant="text" color="secondary" onClick={disconnect} style={{ marginBottom: "0px" }}>
+            <Button variant="text" color="secondary" onClick={disconnect} style={{ marginBottom: '0px' }}>
               <Typography>Disconnect</Typography>
             </Button>
           </Box>

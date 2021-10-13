@@ -1,4 +1,4 @@
-import Box from "@material-ui/core/Box";
+import Box from '@material-ui/core/Box';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -10,7 +10,7 @@ function TabPanel(props: any) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
-      style={{ overflow: "hidden" }}
+      style={{ overflow: 'hidden' }}
     >
       {value === index && <Box p={3}>{children}</Box>}
     </div>

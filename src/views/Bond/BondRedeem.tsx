@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Box, Slide } from "@material-ui/core";
-import { redeemBond } from "../../store/slices/bond-slice";
-import { useWeb3Context } from "../../hooks";
-import { trim, secondsUntilBlock, prettifySeconds, prettyVestingPeriod } from "../../helpers";
-import { IPendingTxn, isPendingTxn, txnButtonText } from "../../store/slices/pending-txns-slice";
-import { Skeleton } from "@material-ui/lab";
-import { IReduxState } from "../../store/slices/state.interface";
+import { useSelector, useDispatch } from 'react-redux';
+import { Box, Slide } from '@material-ui/core';
+import { redeemBond } from '../../store/slices/bond-slice';
+import { useWeb3Context } from '../../hooks';
+import { trim, secondsUntilBlock, prettifySeconds, prettyVestingPeriod } from '../../helpers';
+import { IPendingTxn, isPendingTxn, txnButtonText } from '../../store/slices/pending-txns-slice';
+import { Skeleton } from '@material-ui/lab';
+import { IReduxState } from '../../store/slices/state.interface';
 
 interface IBondRedeem {
   bond: string;
@@ -52,7 +52,7 @@ function BondRedeem({ bond }: IBondRedeem) {
   };
 
   const vestingPeriod = () => {
-    return prettifySeconds(vestingTerm, "day");
+    return prettifySeconds(vestingTerm, 'day');
   };
 
   const bondDiscount = useSelector<IReduxState, number>(state => {
@@ -69,20 +69,20 @@ function BondRedeem({ bond }: IBondRedeem) {
         <div
           className="transaction-button bond-approve-btn"
           onClick={() => {
-            if (isPendingTxn(pendingTransactions, "redeem_bond_" + bond)) return;
+            if (isPendingTxn(pendingTransactions, 'redeem_bond_' + bond)) return;
             onRedeem(false);
           }}
         >
-          <p>{txnButtonText(pendingTransactions, "redeem_bond_" + bond, "Claim")}</p>
+          <p>{txnButtonText(pendingTransactions, 'redeem_bond_' + bond, 'Claim')}</p>
         </div>
         <div
           className="transaction-button bond-approve-btn"
           onClick={() => {
-            if (isPendingTxn(pendingTransactions, "redeem_bond_" + bond + "_autostake")) return;
+            if (isPendingTxn(pendingTransactions, 'redeem_bond_' + bond + '_autostake')) return;
             onRedeem(true);
           }}
         >
-          <p>{txnButtonText(pendingTransactions, "redeem_bond_" + bond + "_autostake", "Claim and Autostake")}</p>
+          <p>{txnButtonText(pendingTransactions, 'redeem_bond_' + bond + '_autostake', 'Claim and Autostake')}</p>
         </div>
       </Box>
 

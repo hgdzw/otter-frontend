@@ -1,12 +1,12 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Drawer } from "@material-ui/core";
-import NavContent from "./NavContent";
+import { makeStyles } from '@material-ui/core/styles';
+import { Drawer } from '@material-ui/core';
+import NavContent from './NavContent';
 
 const drawerWidth = 280;
 
 const useStyles = makeStyles(theme => ({
   drawer: {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
@@ -28,7 +28,7 @@ function NavDrawer({ mobileOpen, handleDrawerToggle }: INavDrawer) {
   return (
     <Drawer
       variant="temporary"
-      anchor={"left"}
+      anchor={'left'}
       open={mobileOpen}
       onClose={handleDrawerToggle}
       onClick={handleDrawerToggle}

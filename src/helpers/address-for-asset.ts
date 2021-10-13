@@ -1,4 +1,4 @@
-import { getAddresses, BONDS } from "../constants";
+import { getAddresses, BONDS } from '../constants';
 
 export const addressForAsset = (bond: string, networkID: number): string => {
   const addresses = getAddresses(networkID);

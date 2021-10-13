@@ -43,7 +43,7 @@
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
   }
@@ -52,8 +52,8 @@
     margin: 10px 0 0 0;
   }
 
-  .bond-price-data{
-    .bond-price-data-title{
+  .bond-price-data {
+    .bond-price-data-title {
       font-family: Montserrat Medium;
       font-weight: 500;
       font-size: 20px;
@@ -61,12 +61,12 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
-    .bond-price-data-value{
+    .bond-price-data-value {
       font-family: Montserrat Bold;
       font-weight: bold;
       font-size: 24px;
       line-height: 29px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 
@@ -127,34 +127,34 @@
   }
 }
 
-.bond-modal{
+.bond-modal {
   background-color: rgba(0, 0, 0, 0.2) !important;
   backdrop-filter: blur(100px) !important;
 }
 
-.bond-one-table{
-  .MuiTabs-indicator{
+.bond-one-table {
+  .MuiTabs-indicator {
     background-color: white;
     height: 1px;
   }
 
-  .MuiTab-wrapper{
+  .MuiTab-wrapper {
     font-family: Montserrat SemiBold;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
-.bond-input{
+.bond-input {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   outline: none;
   margin-bottom: 20px;
 
-  .MuiOutlinedInput-input{
+  .MuiOutlinedInput-input {
     font-family: Montserrat Medium;
     font-style: normal;
     font-weight: 500;
@@ -162,23 +162,23 @@
     color: rgba(255, 255, 255, 0.6);
   }
 
-  .MuiOutlinedInput-notchedOutline{
+  .MuiOutlinedInput-notchedOutline {
     border-color: rgba(255, 255, 255, 0.2) !important;
   }
 
-  .stake-input-btn{
+  .stake-input-btn {
     cursor: pointer;
 
-    p{
+    p {
       font-family: Montserrat SemiBold;
       font-weight: 600;
       font-size: 18px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 }
 
-.bond-approve-btn{
+.bond-approve-btn {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px 0px 10px rgba(44, 39, 109, 0.1);
   border-radius: 10px;
@@ -189,17 +189,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  p{
+
+  p {
     font-family: Montserrat SemiBold;
     font-weight: 600;
     font-size: 18px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
-.help-text{
-  .help-text-desc{
+.help-text {
+  .help-text-desc {
     font-family: Montserrat Light;
     font-weight: 300;
     font-size: 14px;
@@ -208,20 +208,20 @@
   }
 }
 
-.bond-balance-title{
+.bond-balance-title {
   font-family: Montserrat Medium;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 417px) {
-  .bond-price-data-title{
+  .bond-price-data-title {
     font-size: 17px !important;
   }
 
-  .bond-price-data-value{
+  .bond-price-data-value {
     font-size: 19px !important;
   }
 }

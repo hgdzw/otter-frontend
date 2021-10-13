@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Grid,
   Box,
@@ -11,21 +11,21 @@ import {
   Tab,
   Tabs,
   Zoom,
-} from "@material-ui/core";
-import RebaseTimer from "../../components/RebaseTimer/RebaseTimer";
-import TabPanel from "../../components/TabPanel";
-import { trim } from "../../helpers";
-import { changeStake, changeApproval } from "../../store/slices/stake-thunk";
-import "./stake.scss";
-import { useWeb3Context } from "../../hooks";
-import { IPendingTxn, isPendingTxn, txnButtonText } from "../../store/slices/pending-txns-slice";
-import { Skeleton } from "@material-ui/lab";
-import { IReduxState } from "../../store/slices/state.interface";
+} from '@material-ui/core';
+import RebaseTimer from '../../components/RebaseTimer/RebaseTimer';
+import TabPanel from '../../components/TabPanel';
+import { trim } from '../../helpers';
+import { changeStake, changeApproval } from '../../store/slices/stake-thunk';
+import './stake.scss';
+import { useWeb3Context } from '../../hooks';
+import { IPendingTxn, isPendingTxn, txnButtonText } from '../../store/slices/pending-txns-slice';
+import { Skeleton } from '@material-ui/lab';
+import { IReduxState } from '../../store/slices/state.interface';
 
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -84,9 +84,9 @@ function Stake() {
   const onChangeStake = async (action: string) => {
     // eslint-disable-next-line no-restricted-globals
     //@ts-ignore
-    if (isNaN(quantity) || quantity === 0 || quantity === "") {
+    if (isNaN(quantity) || quantity === 0 || quantity === '') {
       // eslint-disable-next-line no-alert
-      alert("Please enter a value!");
+      alert('Please enter a value!');
     } else {
       await dispatch(changeStake({ address, action, value: String(quantity), provider, networkID: chainID }));
     }
@@ -94,8 +94,8 @@ function Stake() {
 
   const hasAllowance = useCallback(
     token => {
-      if (token === "time") return stakeAllowance > 0;
-      if (token === "memo") return unstakeAllowance > 0;
+      if (token === 'time') return stakeAllowance > 0;
+      if (token === 'memo') return unstakeAllowance > 0;
       return 0;
     },
     [stakeAllowance],
@@ -132,7 +132,7 @@ function Stake() {
                       <p className="single-stake-subtitle">APY</p>
                       <p className="single-stake-subtitle-value">
                         {stakingAPY ? (
-                          <>{new Intl.NumberFormat("en-US").format(Number(trimmedStakingAPY))}%</>
+                          <>{new Intl.NumberFormat('en-US').format(Number(trimmedStakingAPY))}%</>
                         ) : (
                           <Skeleton width="150px" />
                         )}
@@ -145,9 +145,9 @@ function Stake() {
                       <p className="single-stake-subtitle">TVL</p>
                       <p className="single-stake-subtitle-value">
                         {stakingTVL ? (
-                          new Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency: "USD",
+                          new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
                             maximumFractionDigits: 0,
                             minimumFractionDigits: 0,
                           }).format(stakingTVL)
@@ -218,56 +218,56 @@ function Stake() {
                       </FormControl>
 
                       <TabPanel value={view} index={0} className="stake-tab-panel">
-                        {address && hasAllowance("time") ? (
+                        {address && hasAllowance('time') ? (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
-                              if (isPendingTxn(pendingTransactions, "staking")) return;
-                              onChangeStake("stake");
+                              if (isPendingTxn(pendingTransactions, 'staking')) return;
+                              onChangeStake('stake');
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, "staking", "Stake TIME")}</p>
+                            <p>{txnButtonText(pendingTransactions, 'staking', 'Stake TIME')}</p>
                           </div>
                         ) : (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
-                              if (isPendingTxn(pendingTransactions, "approve_staking")) return;
-                              onSeekApproval("time");
+                              if (isPendingTxn(pendingTransactions, 'approve_staking')) return;
+                              onSeekApproval('time');
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, "approve_staking", "Approve")}</p>
+                            <p>{txnButtonText(pendingTransactions, 'approve_staking', 'Approve')}</p>
                           </div>
                         )}
                       </TabPanel>
 
                       <TabPanel value={view} index={1} className="stake-tab-panel">
-                        {address && hasAllowance("memo") ? (
+                        {address && hasAllowance('memo') ? (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
-                              if (isPendingTxn(pendingTransactions, "unstaking")) return;
-                              onChangeStake("unstake");
+                              if (isPendingTxn(pendingTransactions, 'unstaking')) return;
+                              onChangeStake('unstake');
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, "unstaking", "Unstake TIME")}</p>
+                            <p>{txnButtonText(pendingTransactions, 'unstaking', 'Unstake TIME')}</p>
                           </div>
                         ) : (
                           <div
                             className="stake-tab-panel-btn"
                             onClick={() => {
-                              if (isPendingTxn(pendingTransactions, "approve_unstaking")) return;
-                              onSeekApproval("memo");
+                              if (isPendingTxn(pendingTransactions, 'approve_unstaking')) return;
+                              onSeekApproval('memo');
                             }}
                           >
-                            <p>{txnButtonText(pendingTransactions, "approve_unstaking", "Approve")}</p>
+                            <p>{txnButtonText(pendingTransactions, 'approve_unstaking', 'Approve')}</p>
                           </div>
                         )}
                       </TabPanel>
                     </Box>
 
                     <div className="help-text">
-                      {address && ((!hasAllowance("time") && view === 0) || (!hasAllowance("memo") && view === 1)) && (
+                      {address && ((!hasAllowance('time') && view === 0) || (!hasAllowance('memo') && view === 1)) && (
                         <p className="text-desc">
                           Note: The "Approve" transaction is only needed when staking/unstaking for the first time;
                           subsequent staking/unstaking only requires you to perform the "Stake" or "Unstake"
@@ -291,7 +291,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{new Intl.NumberFormat("en-US").format(Number(trimmedMemoBalance))} MEMO</>
+                          <>{new Intl.NumberFormat('en-US').format(Number(trimmedMemoBalance))} MEMO</>
                         )}
                       </p>
                     </div>

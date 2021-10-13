@@ -13,15 +13,15 @@
   border-radius: 0 !important;
 }
 
-.dapp-menu-item{
+.dapp-menu-item {
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  p{
+  p {
     font-weight: 600;
     font-size: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-family: Montserrat SemiBold;
   }
 }
@@ -44,8 +44,8 @@
   .wallet-link {
     margin: 10px;
 
-    p{
-      color: #FFFFFF;
+    p {
+      color: #ffffff;
     }
   }
 }
@@ -101,8 +101,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
-    color: #FFFFFF;
-
+    color: #ffffff;
   }
   a svg {
     width: 20px;
@@ -116,19 +115,19 @@
   text-align: left;
   padding-left: 54px;
 
-  a{
+  a {
     margin-left: 0;
     margin-top: 20px;
     margin-bottom: 20px;
   }
 
-  p{
+  p {
     font-family: Montserrat;
     font-size: 14px;
     line-height: 17px;
     color: rgba(255, 255, 255, 0.6);
   }
-  
+
   .bond {
     display: block;
     padding: unset;

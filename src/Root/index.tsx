@@ -1,7 +1,7 @@
-import React from "react";
-import App from "./App";
-import Landing from "./Landing";
-import { HashRouter } from "react-router-dom";
+import React from 'react';
+import App from './App';
+import Landing from './Landing';
+import { HashRouter } from 'react-router-dom';
 
 // FIXME: enable landing before deploy
 // function Root() {

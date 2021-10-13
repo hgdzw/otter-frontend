@@ -1,15 +1,15 @@
-import { useCallback, useState } from "react";
-import { NavLink } from "react-router-dom";
-import Social from "../Social";
-import externalUrls from "./external-urls";
-import { ReactComponent as StakeIcon } from "../../../assets/icons/stake.svg";
-import { ReactComponent as BondIcon } from "../../../assets/icons/bond.svg";
-import { ReactComponent as WonderlandIcon } from "../../../assets/icons/wonderland-nav-header.svg";
-import { trim, shorten } from "../../../helpers";
-import { useAddress, useBonds } from "../../../hooks";
-import { Paper, Link, Box, SvgIcon } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
-import "../sidebar.scss";
+import { useCallback, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Social from '../Social';
+import externalUrls from './external-urls';
+import { ReactComponent as StakeIcon } from '../../../assets/icons/stake.svg';
+import { ReactComponent as BondIcon } from '../../../assets/icons/bond.svg';
+import { ReactComponent as WonderlandIcon } from '../../../assets/icons/wonderland-nav-header.svg';
+import { trim, shorten } from '../../../helpers';
+import { useAddress, useBonds } from '../../../hooks';
+import { Paper, Link, Box, SvgIcon } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import '../sidebar.scss';
 
 function NavContent() {
   const [isActive] = useState();
@@ -17,14 +17,14 @@ function NavContent() {
   const bonds = useBonds();
 
   const checkPage = useCallback((location: any, page: string): boolean => {
-    const currentPath = location.pathname.replace("/", "");
-    if (currentPath.indexOf("dashboard") >= 0 && page === "dashboard") {
+    const currentPath = location.pathname.replace('/', '');
+    if (currentPath.indexOf('dashboard') >= 0 && page === 'dashboard') {
       return true;
     }
-    if (currentPath.indexOf("stake") >= 0 && page === "stake") {
+    if (currentPath.indexOf('stake') >= 0 && page === 'stake') {
       return true;
     }
-    if ((currentPath.indexOf("bonds") >= 0 || currentPath.indexOf("choose_bond") >= 0) && page === "bonds") {
+    if ((currentPath.indexOf('bonds') >= 0 || currentPath.indexOf('choose_bond') >= 0) && page === 'bonds') {
       return true;
     }
     return false;
@@ -41,7 +41,7 @@ function NavContent() {
                 component={WonderlandIcon}
                 viewBox="0 0 130 60"
                 //@ts-ignore
-                style={{ minWdth: "130px", minHeight: "56px", width: "130px" }}
+                style={{ minWdth: '130px', minHeight: '56px', width: '130px' }}
               />
             </Link>
 
@@ -61,9 +61,9 @@ function NavContent() {
                 id="stake-nav"
                 to="/"
                 isActive={(match: any, location: any) => {
-                  return checkPage(location, "stake");
+                  return checkPage(location, 'stake');
                 }}
-                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                className={`button-dapp-menu ${isActive ? 'active' : ''}`}
               >
                 <div className="dapp-menu-item">
                   <SvgIcon color="primary" component={StakeIcon} />
@@ -76,9 +76,9 @@ function NavContent() {
                 id="bond-nav"
                 to="/bonds"
                 isActive={(match: any, location: any) => {
-                  return checkPage(location, "bonds");
+                  return checkPage(location, 'bonds');
                 }}
-                className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                className={`button-dapp-menu ${isActive ? 'active' : ''}`}
               >
                 <div className="dapp-menu-item">
                   <SvgIcon color="primary" component={BondIcon} />
@@ -90,9 +90,9 @@ function NavContent() {
                 <div className="bond-discounts">
                   <p>Bond discounts</p>
                   {bonds.map((bond, i) => (
-                    <Link component={NavLink} to={`/bonds/${bond.value}`} key={i} className={"bond"}>
+                    <Link component={NavLink} to={`/bonds/${bond.value}`} key={i} className={'bond'}>
                       {!bond.discount ? (
-                        <Skeleton variant="text" width={"150px"} />
+                        <Skeleton variant="text" width={'150px'} />
                       ) : (
                         <p>
                           {bond.name}

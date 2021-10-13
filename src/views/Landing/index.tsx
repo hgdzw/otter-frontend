@@ -1,8 +1,8 @@
-import React from "react";
-import "./landing.scss";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { Link } from "@material-ui/core";
+import React from 'react';
+import './landing.scss';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Link } from '@material-ui/core';
 
 function Landing() {
   return (

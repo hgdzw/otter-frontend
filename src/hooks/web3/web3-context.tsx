@@ -1,10 +1,10 @@
-import React, { useState, ReactElement, useContext, useMemo, useCallback } from "react";
-import Web3Modal from "web3modal";
-import { StaticJsonRpcProvider, JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import { getTestnetURI, getMainnetURI } from "./helpers";
-import { DEFAULD_NETWORK } from "../../constants";
-import { Networks } from "../../constants";
+import React, { useState, ReactElement, useContext, useMemo, useCallback } from 'react';
+import Web3Modal from 'web3modal';
+import { StaticJsonRpcProvider, JsonRpcProvider, Web3Provider } from '@ethersproject/providers';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import { getTestnetURI, getMainnetURI } from './helpers';
+import { DEFAULD_NETWORK } from '../../constants';
+import { Networks } from '../../constants';
 
 type onChainProvider = {
   connect: () => Promise<Web3Provider>;
@@ -28,7 +28,7 @@ export const useWeb3Context = () => {
   const web3Context = useContext(Web3Context);
   if (!web3Context) {
     throw new Error(
-      "useWeb3Context() can only be used inside of <Web3ContextProvider />, " + "please declare it at a higher level.",
+      'useWeb3Context() can only be used inside of <Web3ContextProvider />, ' + 'please declare it at a higher level.',
     );
   }
   const { onChainProvider } = web3Context;
@@ -45,10 +45,10 @@ export const useAddress = () => {
 export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ children }) => {
   const [connected, setConnected] = useState(false);
   const [chainID, setChainID] = useState(DEFAULD_NETWORK);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('');
 
   // FIXME: set to polygon production before launch
-  const uri = "https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99";
+  const uri = 'https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99';
   // const [uri, setUri] = useState(chainID === Networks.AVAX ? getMainnetURI() : getTestnetURI());
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
@@ -82,14 +82,14 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
         return;
       }
 
-      rawProvider.on("accountsChanged", () => setTimeout(() => window.location.reload(), 1));
+      rawProvider.on('accountsChanged', () => setTimeout(() => window.location.reload(), 1));
 
-      rawProvider.on("chainChanged", (chain: number) => {
+      rawProvider.on('chainChanged', (chain: number) => {
         _checkNetwork(chain);
         setTimeout(() => window.location.reload(), 1);
       });
 
-      rawProvider.on("network", (_newNetwork, oldNetwork) => {
+      rawProvider.on('network', (_newNetwork, oldNetwork) => {
         if (!oldNetwork) return;
         window.location.reload();
       });
@@ -103,7 +103,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     // }
 
     if (chainID !== otherChainID) {
-      console.warn("You are switching networks: ", otherChainID);
+      console.warn('You are switching networks: ', otherChainID);
       // if (otherChainID === Networks.AVAX || otherChainID === Networks.RINKEBY) {
       //   setChainID(otherChainID);
       //   otherChainID === Networks.AVAX ? setUri(getMainnetURI()) : setUri(getTestnetURI());
@@ -119,14 +119,14 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
     _initListeners(rawProvider);
 
-    const connectedProvider = new Web3Provider(rawProvider, "any");
+    const connectedProvider = new Web3Provider(rawProvider, 'any');
 
     const chainId = await connectedProvider.getNetwork().then(network => network.chainId);
     const connectedAddress = await connectedProvider.getSigner().getAddress();
 
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to avalanche");
+      console.error('Wrong network, please switch to avalanche');
       return;
     }
     setAddress(connectedAddress);
@@ -138,7 +138,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   }, [provider, web3Modal, connected]);
 
   const disconnect = useCallback(async () => {
-    console.log("disconnecting");
+    console.log('disconnecting');
     web3Modal.clearCachedProvider();
     setConnected(false);
 

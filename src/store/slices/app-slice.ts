@@ -1,10 +1,10 @@
-import { ethers } from "ethers";
-import { getAddresses, BONDS } from "../../constants";
-import { StakingContract, MemoTokenContract, BondingCalcContract } from "../../abi";
-import { addressForAsset, contractForReserve, setAll } from "../../helpers";
-import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
-import { JsonRpcProvider } from "@ethersproject/providers";
-import { getMarketPrice, getTokenPrice } from "../../helpers";
+import { ethers } from 'ethers';
+import { getAddresses, BONDS } from '../../constants';
+import { StakingContract, MemoTokenContract, BondingCalcContract } from '../../abi';
+import { addressForAsset, contractForReserve, setAll } from '../../helpers';
+import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
+import { JsonRpcProvider } from '@ethersproject/providers';
+import { getMarketPrice, getTokenPrice } from '../../helpers';
 
 const initialState = {
   loading: true,
@@ -33,10 +33,10 @@ interface ILoadAppDetails {
 }
 
 export const loadAppDetails = createAsyncThunk(
-  "app/loadAppDetails",
+  'app/loadAppDetails',
   //@ts-ignore
   async ({ networkID, provider }: ILoadAppDetails) => {
-    const mimPrice = await getTokenPrice("MIM");
+    const mimPrice = await getTokenPrice('MIM');
 
     const stakingTVL = 0;
 
@@ -70,7 +70,7 @@ export const loadAppDetails = createAsyncThunk(
     const marketPrice = await getMarketPrice(networkID, provider);
 
     return {
-      currentIndex: ethers.utils.formatUnits(currentIndex, "gwei"),
+      currentIndex: ethers.utils.formatUnits(currentIndex, 'gwei'),
       currentBlock,
       fiveDayRate,
       treasuryBalance,
@@ -85,7 +85,7 @@ export const loadAppDetails = createAsyncThunk(
 );
 
 const appSlice = createSlice({
-  name: "app",
+  name: 'app',
   initialState,
   reducers: {
     fetchAppSuccess(state, action) {

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface IPendingTxn {
   readonly txnHash: string;
@@ -9,7 +9,7 @@ export interface IPendingTxn {
 const initialState: Array<any> = [];
 
 const pendingTxnsSlice = createSlice({
-  name: "pendingTransactions",
+  name: 'pendingTransactions',
   initialState,
   reducers: {
     fetchPendingTxns(state, action) {
@@ -23,7 +23,7 @@ const pendingTxnsSlice = createSlice({
 });
 
 export const getStakingTypeText = (action: string) => {
-  return action.toLowerCase() === "stake" ? "Staking TIME" : "Unstaking MEMO";
+  return action.toLowerCase() === 'stake' ? 'Staking TIME' : 'Unstaking MEMO';
 };
 
 export const isPendingTxn = (pendingTransactions: IPendingTxn[], type: string) => {
@@ -31,7 +31,7 @@ export const isPendingTxn = (pendingTransactions: IPendingTxn[], type: string) =
 };
 
 export const txnButtonText = (pendingTransactions: IPendingTxn[], type: string, defaultText: string) => {
-  return isPendingTxn(pendingTransactions, type) ? "Pending..." : defaultText;
+  return isPendingTxn(pendingTransactions, type) ? 'Pending...' : defaultText;
 };
 
 export const { fetchPendingTxns, clearPendingTxn } = pendingTxnsSlice.actions;

@@ -1,6 +1,6 @@
-import { ethers } from "ethers";
-import { getAddresses } from "../constants";
-import { MimTimeReserveContract } from "../abi";
+import { ethers } from 'ethers';
+import { getAddresses } from '../constants';
+import { MimTimeReserveContract } from '../abi';
 
 export async function getMarketPrice(
   networkID: number,

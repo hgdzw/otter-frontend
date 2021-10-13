@@ -1,10 +1,10 @@
-import { ethers } from "ethers";
-import { BONDS, getAddresses } from "../../constants";
-import { MimTokenContract, TimeTokenContract, MemoTokenContract } from "../../abi/";
-import { contractForBond, contractForReserve, setAll } from "../../helpers";
+import { ethers } from 'ethers';
+import { BONDS, getAddresses } from '../../constants';
+import { MimTokenContract, TimeTokenContract, MemoTokenContract } from '../../abi/';
+import { contractForBond, contractForReserve, setAll } from '../../helpers';
 
-import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
-import { JsonRpcProvider } from "@ethersproject/providers";
+import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
+import { JsonRpcProvider } from '@ethersproject/providers';
 
 interface IState {
   [key: string]: any;
@@ -43,7 +43,7 @@ export interface IAccount {
 }
 
 export const getBalances = createAsyncThunk(
-  "account/getBalances",
+  'account/getBalances',
   async ({ address, networkID, provider }: IAccountProps) => {
     const addresses = getAddresses(networkID);
     const memoContract = new ethers.Contract(addresses.MEMO_ADDRESS, MemoTokenContract, provider);
@@ -52,15 +52,15 @@ export const getBalances = createAsyncThunk(
     const timeBalance = await timeContract.balanceOf(address);
     return {
       balances: {
-        memo: ethers.utils.formatUnits(memoBalance, "gwei"),
-        time: ethers.utils.formatUnits(timeBalance, "gwei"),
+        memo: ethers.utils.formatUnits(memoBalance, 'gwei'),
+        time: ethers.utils.formatUnits(timeBalance, 'gwei'),
       },
     };
   },
 );
 
 export const loadAccountDetails = createAsyncThunk(
-  "account/loadAccountDetails",
+  'account/loadAccountDetails',
   async ({ networkID, provider, address }: IAccountProps) => {
     let timeBalance = 0;
     let memoBalance = 0;
@@ -86,8 +86,8 @@ export const loadAccountDetails = createAsyncThunk(
 
     return {
       balances: {
-        memo: ethers.utils.formatUnits(memoBalance, "gwei"),
-        time: ethers.utils.formatUnits(timeBalance, "gwei"),
+        memo: ethers.utils.formatUnits(memoBalance, 'gwei'),
+        time: ethers.utils.formatUnits(timeBalance, 'gwei'),
         mim: ethers.utils.formatEther(mimBalance),
       },
       staking: {
@@ -106,7 +106,7 @@ interface ICalculateUserBondDetails {
 }
 
 export const calculateUserBondDetails = createAsyncThunk(
-  "bonding/calculateUserBondDetails",
+  'bonding/calculateUserBondDetails',
   async ({ address, bond, networkID, provider }: ICalculateUserBondDetails) => {
     if (!address) return;
 
@@ -122,7 +122,7 @@ export const calculateUserBondDetails = createAsyncThunk(
     pendingPayout = await bondContract.pendingPayoutFor(address);
 
     let allowance,
-      balance = "0";
+      balance = '0';
 
     if (bond === BONDS.mim) {
       allowance = await reserveContract.allowance(address, addresses.BONDS.MIM);
@@ -133,7 +133,7 @@ export const calculateUserBondDetails = createAsyncThunk(
     if (bond === BONDS.mim_time) {
       allowance = await reserveContract.allowance(address, addresses.BONDS.MIM_TIME);
       balance = await reserveContract.balanceOf(address);
-      balance = ethers.utils.formatUnits(balance, "ether");
+      balance = ethers.utils.formatUnits(balance, 'ether');
     }
 
     return {
@@ -142,13 +142,13 @@ export const calculateUserBondDetails = createAsyncThunk(
       balance: Number(balance),
       interestDue,
       bondMaturationBlock,
-      pendingPayout: ethers.utils.formatUnits(pendingPayout, "gwei"),
+      pendingPayout: ethers.utils.formatUnits(pendingPayout, 'gwei'),
     };
   },
 );
 
 const accountSlice = createSlice({
-  name: "account",
+  name: 'account',
   initialState,
   reducers: {
     fetchAccountSuccess(state, action) {
@@ -158,25 +158,25 @@ const accountSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(loadAccountDetails.pending, state => {
-        state.status = "loading";
+        state.status = 'loading';
       })
       .addCase(loadAccountDetails.fulfilled, (state, action) => {
         setAll(state, action.payload);
-        state.status = "idle";
+        state.status = 'idle';
       })
       .addCase(loadAccountDetails.rejected, (state, { error }) => {
-        state.status = "idle";
+        state.status = 'idle';
         console.log(error);
       })
       .addCase(getBalances.pending, state => {
-        state.status = "loading";
+        state.status = 'loading';
       })
       .addCase(getBalances.fulfilled, (state, action) => {
         setAll(state, action.payload);
-        state.status = "idle";
+        state.status = 'idle';
       })
       .addCase(getBalances.rejected, (state, { error }) => {
-        state.status = "idle";
+        state.status = 'idle';
         console.log(error);
       })
       .addCase(calculateUserBondDetails.pending, (state, action) => {

@@ -6,7 +6,7 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   background-color: #55555555;
-  
+
   .ohm-popover {
     max-width: 500px;
     display: flex;
@@ -32,65 +32,65 @@
     max-width: 400px;
   }
 
-  .hades-title{
+  .hades-title {
     font-family: Montserrat SemiBold;
     font-weight: 600;
     font-size: 32px;
-    color: #FFFFFF;
+    color: #ffffff;
     text-align: center;
   }
 
-  .cross-wrap{
+  .cross-wrap {
     display: flex;
   }
 
-  .card-content{
+  .card-content {
     margin: 0 30px;
     width: auto;
 
-    .input-lable{
+    .input-lable {
       font-family: Montserrat Medium;
       font-weight: 500;
       font-size: 16px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
-    .percent{
+    .percent {
       font-family: Montserrat SemiBold;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
-    .help-text{
+    .help-text {
       margin: 5px 0;
 
-      .text-bond-desc{
+      .text-bond-desc {
         font-family: Montserrat Light;
         font-weight: 300;
         font-size: 12px;
         color: rgba(255, 255, 255, 0.6);
       }
-    }    
+    }
   }
 
-  .bond-input{
+  .bond-input {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     outline: none;
     margin-bottom: 20px;
-  
-    .MuiOutlinedInput-input{
+
+    .MuiOutlinedInput-input {
       font-family: Montserrat Medium;
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
       color: rgba(255, 255, 255, 0.6);
     }
-  
-    .MuiOutlinedInput-notchedOutline{
+
+    .MuiOutlinedInput-notchedOutline {
       border-color: rgba(255, 255, 255, 0.2) !important;
     }
   }

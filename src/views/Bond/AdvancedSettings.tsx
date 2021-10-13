@@ -9,9 +9,9 @@ import {
   OutlinedInput,
   InputLabel,
   InputAdornment,
-} from "@material-ui/core";
-import { ReactComponent as XIcon } from "../../assets/icons/x.svg";
-import "./bondSettings.scss";
+} from '@material-ui/core';
+import { ReactComponent as XIcon } from '../../assets/icons/x.svg';
+import './bondSettings.scss';
 
 interface IAdvancedSettingsProps {
   open: boolean;

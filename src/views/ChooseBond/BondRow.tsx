@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux";
-import { trim, bondName, lpURL, isBondLP, priceUnits } from "../../helpers";
-import BondLogo from "../../components/BondLogo";
-import { Paper, TableRow, TableCell, Slide, Link } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
-import "./choosebond.scss";
-import { Skeleton } from "@material-ui/lab";
-import { IReduxState } from "../../store/slices/state.interface";
-import { useWeb3Context } from "../../hooks";
+import { useSelector } from 'react-redux';
+import { trim, bondName, lpURL, isBondLP, priceUnits } from '../../helpers';
+import BondLogo from '../../components/BondLogo';
+import { Paper, TableRow, TableCell, Slide, Link } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
+import './choosebond.scss';
+import { Skeleton } from '@material-ui/lab';
+import { IReduxState } from '../../store/slices/state.interface';
+import { useWeb3Context } from '../../hooks';
 
 interface IBondProps {
   bond: string;
@@ -65,9 +65,9 @@ export function BondDataCard({ bond }: IBondProps) {
             {isBondLoading ? (
               <Skeleton width="80px" />
             ) : (
-              new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
+              new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
                 maximumFractionDigits: 0,
                 minimumFractionDigits: 0,
               }).format(bondPurchased)
@@ -115,7 +115,7 @@ export function BondTableData({ bond }: IBondProps) {
       <TableCell align="center">
         <p className="bond-name-title">
           <>
-            <span className="currency-icon">{priceUnits(bond)}</span>{" "}
+            <span className="currency-icon">{priceUnits(bond)}</span>{' '}
             {isBondLoading ? <Skeleton width="50px" /> : trim(bondPrice, 2)}
           </>
         </p>
@@ -128,9 +128,9 @@ export function BondTableData({ bond }: IBondProps) {
           {isBondLoading ? (
             <Skeleton />
           ) : (
-            new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
+            new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
               maximumFractionDigits: 0,
               minimumFractionDigits: 0,
             }).format(bondPurchased)

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "./header.scss";
-import { ReactComponent as WonderlandIcon } from "../../../../assets/icons/wonderland-nav-header.svg";
-import { SvgIcon, Link, Box, Popper, Fade } from "@material-ui/core";
-import { ReactComponent as GitHub } from "../../../../assets/icons/github.svg";
-import { ReactComponent as Twitter } from "../../../../assets/icons/twitter.svg";
-import { ReactComponent as Telegram } from "../../../../assets/icons/telegram.svg";
+import React, { useState } from 'react';
+import './header.scss';
+import { ReactComponent as WonderlandIcon } from '../../../../assets/icons/wonderland-nav-header.svg';
+import { SvgIcon, Link, Box, Popper, Fade } from '@material-ui/core';
+import { ReactComponent as GitHub } from '../../../../assets/icons/github.svg';
+import { ReactComponent as Twitter } from '../../../../assets/icons/twitter.svg';
+import { ReactComponent as Telegram } from '../../../../assets/icons/telegram.svg';
 
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,7 +22,7 @@ function Header() {
         component={WonderlandIcon}
         viewBox="0 0 130 60"
         //@ts-ignore
-        style={{ minWdth: "130px", minHeight: "56px", width: "130px" }}
+        style={{ minWdth: '130px', minHeight: '56px', width: '130px' }}
       />
       <div className="landing-header-nav-wrap">
         <Box

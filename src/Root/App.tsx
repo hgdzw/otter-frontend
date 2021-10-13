@@ -1,34 +1,34 @@
-import { ThemeProvider } from "@material-ui/core/styles";
-import { useEffect, useState, useCallback } from "react";
-import { Route, Redirect, Switch, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Hidden, useMediaQuery } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { useAddress, useWeb3Context } from "../hooks";
+import { ThemeProvider } from '@material-ui/core/styles';
+import { useEffect, useState, useCallback } from 'react';
+import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Hidden, useMediaQuery } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { useAddress, useWeb3Context } from '../hooks';
 
-import { calcBondDetails } from "../store/slices/bond-slice";
-import { loadAppDetails } from "../store/slices/app-slice";
-import { loadAccountDetails, calculateUserBondDetails } from "../store/slices/account-slice";
+import { calcBondDetails } from '../store/slices/bond-slice';
+import { loadAppDetails } from '../store/slices/app-slice';
+import { loadAccountDetails, calculateUserBondDetails } from '../store/slices/account-slice';
 
-import { Stake, ChooseBond, Bond } from "../views";
-import Sidebar from "../components/Sidebar";
-import TopBar from "../components/Header";
-import NavDrawer from "../components/Sidebar/NavDrawer";
-import NotFound from "../views/404/NotFound";
+import { Stake, ChooseBond, Bond } from '../views';
+import Sidebar from '../components/Sidebar';
+import TopBar from '../components/Header';
+import NavDrawer from '../components/Sidebar/NavDrawer';
+import NotFound from '../views/404/NotFound';
 
-import { light as lightTheme } from "../themes";
+import { light as lightTheme } from '../themes';
 
-import { BONDS } from "../constants";
-import "./style.scss";
-import { IReduxState } from "../store/slices/state.interface";
-import Loading from "../components/Loader";
+import { BONDS } from '../constants';
+import './style.scss';
+import { IReduxState } from '../store/slices/state.interface';
+import Loading from '../components/Loader';
 
 const drawerWidth = 280;
 const transitionDuration = 969;
 
 const useStyles = makeStyles(theme => ({
   drawer: {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
@@ -36,16 +36,16 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(1),
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: transitionDuration,
     }),
-    height: "100%",
-    overflow: "auto",
+    height: '100%',
+    overflow: 'auto',
     marginLeft: drawerWidth,
   },
   contentShift: {
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: transitionDuration,
     }),
@@ -64,8 +64,8 @@ function App() {
   const classes = useStyles();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isSmallerScreen = useMediaQuery("(max-width: 960px)");
-  const isSmallScreen = useMediaQuery("(max-width: 600px)");
+  const isSmallerScreen = useMediaQuery('(max-width: 960px)');
+  const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
   const { connect, provider, hasCachedProvider, chainID, connected } = useWeb3Context();
   const address = useAddress();
@@ -73,23 +73,23 @@ function App() {
   const [walletChecked, setWalletChecked] = useState(false);
 
   const isAppLoading = useSelector<IReduxState, boolean>(state => state.app.loading);
-  const isAppLoaded = useSelector<IReduxState>(state => typeof state.app.marketPrice != "undefined");
+  const isAppLoaded = useSelector<IReduxState>(state => typeof state.app.marketPrice != 'undefined');
 
   async function loadDetails(whichDetails: string) {
     let loadProvider = provider;
 
-    if (whichDetails === "app") {
+    if (whichDetails === 'app') {
       loadApp(loadProvider);
     }
 
-    if (whichDetails === "account" && address && connected) {
+    if (whichDetails === 'account' && address && connected) {
       loadAccount(loadProvider);
       if (isAppLoaded) return;
 
       loadApp(loadProvider);
     }
 
-    if (whichDetails === "userBonds" && address && connected) {
+    if (whichDetails === 'userBonds' && address && connected) {
       Object.values(BONDS).map(async bond => {
         await dispatch(calculateUserBondDetails({ address, bond, provider, networkID: chainID }));
       });
@@ -125,17 +125,17 @@ function App() {
 
   useEffect(() => {
     if (walletChecked) {
-      loadDetails("app");
-      loadDetails("account");
-      loadDetails("userBonds");
+      loadDetails('app');
+      loadDetails('account');
+      loadDetails('userBonds');
     }
   }, [walletChecked]);
 
   useEffect(() => {
     if (connected) {
-      loadDetails("app");
-      loadDetails("account");
-      loadDetails("userBonds");
+      loadDetails('app');
+      loadDetails('account');
+      loadDetails('userBonds');
     }
   }, [connected]);
 
@@ -156,7 +156,7 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <div className="root-background" />
-      <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"}`}>
+      <div className={`app ${isSmallerScreen && 'tablet'} ${isSmallScreen && 'mobile'}`}>
         <TopBar drawe={!isSmallerScreen} handleDrawerToggle={handleDrawerToggle} />
         <nav className={classes.drawer}>
           <Hidden mdUp>

@@ -1,6 +1,6 @@
-import { ethers } from "ethers";
-import { getAddresses, BONDS } from "../constants";
-import { MimBondContract, MimTimeBondContract } from "../abi";
+import { ethers } from 'ethers';
+import { getAddresses, BONDS } from '../constants';
+import { MimBondContract, MimTimeBondContract } from '../abi';
 
 export const contractForBond = (
   bond: string,
