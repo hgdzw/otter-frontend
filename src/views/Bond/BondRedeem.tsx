@@ -91,13 +91,13 @@ function BondRedeem({ bond }: IBondRedeem) {
           <div className="data-row">
             <p className="bond-balance-title">Pending Rewards</p>
             <p className="price-data bond-balance-title">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(interestDue, 4)} TIME`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(interestDue, 4)} CLAM`}
             </p>
           </div>
           <div className="data-row">
             <p className="bond-balance-title">Claimable Rewards</p>
             <p className="price-data bond-balance-title">
-              {isBondLoading ? <Skeleton width="100px" /> : `${trim(pendingPayout, 4)} TIME`}
+              {isBondLoading ? <Skeleton width="100px" /> : `${trim(pendingPayout, 4)} CLAM`}
             </p>
           </div>
           <div className="data-row">

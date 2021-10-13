@@ -112,7 +112,7 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
 
   const balanceUnits = () => {
     if (bond.indexOf('_lp') >= 0) return 'LP';
-    else return 'MIM';
+    else return 'DAI';
   };
 
   async function loadBondDetails() {

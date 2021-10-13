@@ -55,7 +55,7 @@ function Bond({ bond }: IBondProps) {
     setView(newView);
   };
 
-  let bondToken = 'MIM';
+  let bondToken = 'DAI';
 
   return (
     <Fade in={true} mountOnEnter unmountOnExit>
@@ -85,7 +85,7 @@ function Bond({ bond }: IBondProps) {
                   </p>
                 </div>
                 <div className="bond-price-data">
-                  <p className="bond-price-data-title">TIME Price</p>
+                  <p className="bond-price-data-title">CLAM Price</p>
                   <p className="bond-price-data-value"> {isBondLoading ? <Skeleton /> : `$${trim(marketPrice, 2)}`} </p>
                 </div>
               </Box>

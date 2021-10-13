@@ -21,12 +21,12 @@ interface IAccountProps {
 }
 
 interface IUserBindDetails {
-  bond: string;
-  allowance: number;
-  balance: number;
-  interestDue: number;
-  bondMaturationBlock: number;
-  pendingPayout: string;
+  bond?: string;
+  allowance?: number;
+  balance?: number;
+  interestDue?: number;
+  bondMaturationBlock?: number;
+  pendingPayout?: number;
 }
 
 export interface IAccount {
@@ -106,8 +106,8 @@ interface ICalculateUserBondDetails {
 
 export const calculateUserBondDetails = createAsyncThunk(
   'bonding/calculateUserBondDetails',
-  async ({ address, bond, networkID, provider }: ICalculateUserBondDetails) => {
-    if (!address) return;
+  async ({ address, bond, networkID, provider }: ICalculateUserBondDetails): Promise<IUserBindDetails> => {
+    if (!address) return {};
 
     const addresses = getAddresses(networkID);
     const bondContract = contractForBond(bond, networkID, provider);
@@ -141,7 +141,7 @@ export const calculateUserBondDetails = createAsyncThunk(
       balance: Number(balance),
       interestDue,
       bondMaturationBlock,
-      pendingPayout: ethers.utils.formatUnits(pendingPayout, 'gwei'),
+      pendingPayout: Number(ethers.utils.formatUnits(pendingPayout, 'gwei')),
     };
   },
 );
@@ -183,7 +183,7 @@ const accountSlice = createSlice({
       })
       .addCase(calculateUserBondDetails.fulfilled, (state, action) => {
         //@ts-ignore
-        const bond = action.payload.bond;
+        const bond = action.payload.bond!;
         state[bond] = action.payload;
         state.loading = false;
       })
