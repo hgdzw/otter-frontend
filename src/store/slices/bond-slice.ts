@@ -122,7 +122,8 @@ export const calcBondDetails = createAsyncThunk(
 
     const maxBondPrice = await bondContract.maxPayout();
 
-    const debtRatio = (await bondContract.standardizedDebtRatio()) / Math.pow(10, 9);
+    const standardizedDebtRatio = await bondContract.standardizedDebtRatio();
+    const debtRatio = standardizedDebtRatio / Math.pow(10, 9);
 
     let marketPrice = await getMarketPrice(networkID, provider);
     const mimPrice = await getTokenPrice("MIM");

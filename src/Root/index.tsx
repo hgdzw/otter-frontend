@@ -3,18 +3,29 @@ import App from "./App";
 import Landing from "./Landing";
 import { HashRouter } from "react-router-dom";
 
-function Root() {
-  const isApp = (): boolean => {
-    return window.location.host.includes("app");
-  };
+// FIXME: enable landing before deploy
+// function Root() {
+//   const isApp = (): boolean => {
+//     return window.location.host.includes("app");
+//   };
 
+//   const app = () => (
+//     <HashRouter>
+//       <App />
+//     </HashRouter>
+//   );
+
+//   return isApp() ? app() : <Landing />;
+// }
+
+function Root() {
   const app = () => (
     <HashRouter>
       <App />
     </HashRouter>
   );
 
-  return isApp() ? app() : <Landing />;
+  return app();
 }
 
 export default Root;

@@ -47,7 +47,9 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [chainID, setChainID] = useState(DEFAULD_NETWORK);
   const [address, setAddress] = useState("");
 
-  const [uri, setUri] = useState(chainID === Networks.AVAX ? getMainnetURI() : getTestnetURI());
+  // FIXME: set to polygon production before launch
+  const uri = "https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99";
+  // const [uri, setUri] = useState(chainID === Networks.AVAX ? getMainnetURI() : getTestnetURI());
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
   const [web3Modal] = useState<Web3Modal>(
@@ -60,6 +62,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
             rpc: {
               [Networks.AVAX]: getMainnetURI(),
               [Networks.RINKEBY]: getTestnetURI(),
+              [Networks.POLYGON_MUMBAI]: uri,
             },
           },
         },
@@ -95,18 +98,18 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   );
 
   const _checkNetwork = (otherChainID: number): Boolean => {
-    if (Number(otherChainID) !== Networks.AVAX) {
-      alert("Please connect your wallet to Avalanche network to use Wonderland!");
-    }
+    // if (Number(otherChainID) !== Networks.AVAX) {
+    //   alert("Please connect your wallet to Avalanche network to use Wonderland!");
+    // }
 
     if (chainID !== otherChainID) {
       console.warn("You are switching networks: ", otherChainID);
-      if (otherChainID === Networks.AVAX || otherChainID === Networks.RINKEBY) {
-        setChainID(otherChainID);
-        otherChainID === Networks.AVAX ? setUri(getMainnetURI()) : setUri(getTestnetURI());
-        return true;
-      }
-      return false;
+      // if (otherChainID === Networks.AVAX || otherChainID === Networks.RINKEBY) {
+      //   setChainID(otherChainID);
+      //   otherChainID === Networks.AVAX ? setUri(getMainnetURI()) : setUri(getTestnetURI());
+      //   return true;
+      // }
+      // return false;
     }
     return true;
   };

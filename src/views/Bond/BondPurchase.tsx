@@ -7,6 +7,7 @@ import { useWeb3Context } from "../../hooks";
 import { IPendingTxn, isPendingTxn, txnButtonText } from "../../store/slices/pending-txns-slice";
 import { Skeleton } from "@material-ui/lab";
 import { IReduxState } from "../../store/slices/state.interface";
+import { BLOCK_RATE_SECONDS } from "src/constants";
 
 interface IBondPurchaseProps {
   bond: string;
@@ -59,7 +60,9 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   });
 
   const vestingPeriod = () => {
-    return prettifySeconds(vestingTerm, "day");
+    // return prettifySeconds(vestingTerm, "day");
+    const time = vestingTerm * BLOCK_RATE_SECONDS;
+    return prettifySeconds(time, "seconds");
   };
 
   async function onBond() {

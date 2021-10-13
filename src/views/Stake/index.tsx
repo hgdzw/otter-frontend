@@ -140,7 +140,7 @@ function Stake() {
                     </div>
                   </Grid>
 
-                  {/* <Grid item xs={6} sm={4} md={4} lg={4}>
+                  <Grid item xs={6} sm={4} md={4} lg={4}>
                     <div className="stake-tvl">
                       <p className="single-stake-subtitle">TVL</p>
                       <p className="single-stake-subtitle-value">
@@ -156,7 +156,7 @@ function Stake() {
                         )}
                       </p>
                     </div>
-                  </Grid> */}
+                  </Grid>
 
                   <Grid item xs={12} sm={4} md={4} lg={4}>
                     <div className="stake-index">
