@@ -38,8 +38,6 @@ export const loadAppDetails = createAsyncThunk(
   async ({ networkID, provider }: ILoadAppDetails) => {
     const daiPrice = await getTokenPrice('DAI');
 
-    const stakingTVL = 0;
-
     const addresses = getAddresses(networkID);
     const currentBlock = await provider.getBlockNumber();
     const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
@@ -52,11 +50,12 @@ export const loadAppDetails = createAsyncThunk(
     const daiClamAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
     const valuation = await bondCalculator.valuation(addressForAsset(BONDS.dai_clam, networkID), daiClamAmount);
     const markdown = await bondCalculator.markdown(addressForAsset(BONDS.dai_clam, networkID));
-    let daiClamUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
+    const daiClamUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
 
     const treasuryBalance = daiAmount / Math.pow(10, 18) + daiClamUSD;
 
     const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
+    const stakingBalance = await stakingContract.contractBalance();
     const epoch = await stakingContract.epoch();
     const stakingReward = epoch.distribute;
     const circ = await sCLAMContract.circulatingSupply();
@@ -67,7 +66,9 @@ export const loadAppDetails = createAsyncThunk(
     const currentIndex = await stakingContract.index();
     const nextRebase = epoch.endBlock.toNumber();
 
-    const marketPrice = await getMarketPrice(networkID, provider);
+    const rawMarketPrice = await getMarketPrice(networkID, provider);
+    const marketPrice = Number(((rawMarketPrice / Math.pow(10, 9)) * daiPrice).toFixed(2));
+    const stakingTVL = stakingBalance.mul(marketPrice).div(Math.pow(10, 9));
 
     return {
       currentIndex: ethers.utils.formatUnits(currentIndex, 'gwei'),
@@ -77,7 +78,7 @@ export const loadAppDetails = createAsyncThunk(
       stakingAPY,
       stakingTVL,
       stakingRebase,
-      marketPrice: (marketPrice / Math.pow(10, 9)) * daiPrice,
+      marketPrice,
       currentBlockTime,
       nextRebase,
     };
