@@ -67,8 +67,8 @@ export const loadAppDetails = createAsyncThunk(
     const nextRebase = epoch.endBlock.toNumber();
 
     const rawMarketPrice = await getMarketPrice(networkID, provider);
-    const marketPrice = Number(((rawMarketPrice / Math.pow(10, 9)) * daiPrice).toFixed(2));
-    const stakingTVL = stakingBalance.mul(marketPrice).div(Math.pow(10, 9));
+    const marketPrice = Number(((rawMarketPrice.toNumber() / Math.pow(10, 9)) * daiPrice).toFixed(2));
+    const stakingTVL = (stakingBalance * marketPrice) / Math.pow(10, 9);
 
     return {
       currentIndex: ethers.utils.formatUnits(currentIndex, 'gwei'),

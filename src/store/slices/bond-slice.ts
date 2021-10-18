@@ -1,4 +1,4 @@
-import { ethers, constants, BigNumber } from 'ethers';
+import { ethers, constants } from 'ethers';
 import {
   isBondLP,
   getMarketPrice,
@@ -15,6 +15,7 @@ import { fetchPendingTxns, clearPendingTxn } from './pending-txns-slice';
 import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
 import { JsonRpcProvider } from '@ethersproject/providers';
 import { fetchAccountSuccess } from './account-slice';
+import { formatUnits } from '@ethersproject/units';
 
 interface IState {
   [key: string]: any;
@@ -125,13 +126,13 @@ export const calcBondDetails = createAsyncThunk(
     const standardizedDebtRatio = await bondContract.standardizedDebtRatio();
     const debtRatio = standardizedDebtRatio / Math.pow(10, 9);
 
-    let marketPrice = await getMarketPrice(networkID, provider);
     const daiPrice = await getTokenPrice('DAI');
-    marketPrice = (marketPrice / Math.pow(10, 9)) * daiPrice;
+    const rawMarketPrice = (await getMarketPrice(networkID, provider)).mul(daiPrice);
+    const marketPrice = formatUnits(rawMarketPrice, 9);
 
     try {
       bondPrice = await bondContract.bondPriceInUSD();
-      bondDiscount = (marketPrice * Math.pow(10, 18) - bondPrice) / bondPrice;
+      bondDiscount = (rawMarketPrice.toNumber() * Math.pow(10, 9) - bondPrice) / bondPrice;
     } catch (e) {
       console.log('error getting bondPriceInUSD', e);
     }
