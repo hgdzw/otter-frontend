@@ -48,8 +48,11 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [address, setAddress] = useState('');
 
   // FIXME: set to polygon production before launch
-  const uri = 'https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99';
-  // const [uri, setUri] = useState(chainID === Networks.AVAX ? getMainnetURI() : getTestnetURI());
+  const [uri, setUri] = useState(
+    chainID === 80001
+      ? 'https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99'
+      : getTestnetURI(),
+  );
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
   const [web3Modal] = useState<Web3Modal>(
@@ -105,12 +108,13 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
     if (chainID !== otherChainID) {
       console.warn('You are switching networks: ', otherChainID);
-      // if (otherChainID === Networks.AVAX || otherChainID === Networks.RINKEBY) {
-      //   setChainID(otherChainID);
-      //   otherChainID === Networks.AVAX ? setUri(getMainnetURI()) : setUri(getTestnetURI());
-      //   return true;
-      // }
-      // return false;
+      if (otherChainID === Networks.AVAX || otherChainID === Networks.RINKEBY) {
+        setChainID(otherChainID);
+        // otherChainID === Networks.AVAX ? setUri(getMainnetURI()) : setUri(getTestnetURI());
+        setUri(getTestnetURI());
+        return true;
+      }
+      return false;
     }
     return true;
   };
