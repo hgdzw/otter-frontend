@@ -91,7 +91,7 @@ function NavContent() {
                   <p>Bond discounts</p>
                   {bonds.map((bond, i) => (
                     <Link component={NavLink} to={`/bonds/${bond.value}`} key={i} className={'bond'}>
-                      {!bond.discount ? (
+                      {bond.discount == NaN ? (
                         <Skeleton variant="text" width={'150px'} />
                       ) : (
                         <p>

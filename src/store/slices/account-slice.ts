@@ -25,7 +25,7 @@ interface IUserBindDetails {
   allowance?: number;
   balance?: number;
   interestDue?: number;
-  bondMaturationBlock?: number;
+  bondMaturationTime?: number;
   pendingPayout?: number;
 }
 
@@ -71,17 +71,13 @@ export const loadAccountDetails = createAsyncThunk(
     const daiContract = new ethers.Contract(addresses.DAI_ADDRESS, MimTokenContract, provider);
     const daiBalance = await daiContract.balanceOf(address);
 
-    if (addresses.CLAM_ADDRESS) {
-      const clamContract = new ethers.Contract(addresses.CLAM_ADDRESS, TimeTokenContract, provider);
-      clamBalance = await clamContract.balanceOf(address);
-      stakeAllowance = await clamContract.allowance(address, addresses.STAKING_HELPER_ADDRESS);
-    }
+    const clamContract = new ethers.Contract(addresses.CLAM_ADDRESS, TimeTokenContract, provider);
+    clamBalance = await clamContract.balanceOf(address);
+    stakeAllowance = await clamContract.allowance(address, addresses.STAKING_HELPER_ADDRESS);
 
-    if (addresses.sCLAM_ADDRESS) {
-      const sClamContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, provider);
-      sClamBalance = await sClamContract.balanceOf(address);
-      unstakeAllowance = await sClamContract.allowance(address, addresses.STAKING_ADDRESS);
-    }
+    const sClamContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, provider);
+    sClamBalance = await sClamContract.balanceOf(address);
+    unstakeAllowance = await sClamContract.allowance(address, addresses.STAKING_ADDRESS);
 
     return {
       balances: {
@@ -113,11 +109,11 @@ export const calculateUserBondDetails = createAsyncThunk(
     const bondContract = contractForBond(bond, networkID, provider);
     const reserveContract = contractForReserve(bond, networkID, provider);
 
-    let interestDue, pendingPayout, bondMaturationBlock;
+    let interestDue, pendingPayout, bondMaturationTime;
 
     const bondDetails = await bondContract.bondInfo(address);
     interestDue = bondDetails.payout / Math.pow(10, 9);
-    bondMaturationBlock = +bondDetails.vesting + +bondDetails.lastTime;
+    bondMaturationTime = +bondDetails.vesting + +bondDetails.lastTime;
     pendingPayout = await bondContract.pendingPayoutFor(address);
 
     let allowance,
@@ -140,7 +136,7 @@ export const calculateUserBondDetails = createAsyncThunk(
       allowance: Number(allowance),
       balance: Number(balance),
       interestDue,
-      bondMaturationBlock,
+      bondMaturationTime,
       pendingPayout: Number(ethers.utils.formatUnits(pendingPayout, 'gwei')),
     };
   },

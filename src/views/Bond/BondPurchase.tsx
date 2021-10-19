@@ -60,9 +60,7 @@ function BondPurchase({ bond, slippage }: IBondPurchaseProps) {
   });
 
   const vestingPeriod = () => {
-    // return prettifySeconds(vestingTerm, "day");
-    const clam = vestingTerm * BLOCK_RATE_SECONDS;
-    return prettifySeconds(clam, 'seconds');
+    return prettifySeconds(vestingTerm, 'day');
   };
 
   async function onBond() {

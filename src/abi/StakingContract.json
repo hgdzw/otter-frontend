@@ -1,15 +1,15 @@
 {
-  "abi": [
+"abi": [
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_OHM",
+          "name": "_CLAM",
           "type": "address"
         },
         {
           "internalType": "address",
-          "name": "_sOHM",
+          "name": "_sCLAM",
           "type": "address"
         },
         {
@@ -24,7 +24,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "_firstEpochBlock",
+          "name": "_firstEpochTime",
           "type": "uint256"
         }
       ],
@@ -71,7 +71,7 @@
     },
     {
       "inputs": [],
-      "name": "OHM",
+      "name": "CLAM",
       "outputs": [
         {
           "internalType": "address",
@@ -137,7 +137,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "endBlock",
+          "name": "endTime",
           "type": "uint256"
         },
         {
@@ -197,7 +197,7 @@
     },
     {
       "inputs": [],
-      "name": "manager",
+      "name": "owner",
       "outputs": [
         {
           "internalType": "address",
@@ -257,7 +257,7 @@
     },
     {
       "inputs": [],
-      "name": "sOHM",
+      "name": "sCLAM",
       "outputs": [
         {
           "internalType": "address",
@@ -271,7 +271,7 @@
     {
       "inputs": [
         {
-          "internalType": "enum OlympusStaking.CONTRACTS",
+          "internalType": "enum OtterStaking.CONTRACTS",
           "name": "_contract",
           "type": "uint8"
         },

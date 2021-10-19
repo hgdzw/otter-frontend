@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, Slide } from '@material-ui/core';
 import { redeemBond } from '../../store/slices/bond-slice';
 import { useWeb3Context } from '../../hooks';
-import { trim, secondsUntilBlock, prettifySeconds, prettyVestingPeriod } from '../../helpers';
+import { trim, prettifySeconds, prettyVestingPeriod } from '../../helpers';
 import { IPendingTxn, isPendingTxn, txnButtonText } from '../../store/slices/pending-txns-slice';
 import { Skeleton } from '@material-ui/lab';
 import { IReduxState } from '../../store/slices/state.interface';
@@ -20,9 +20,9 @@ function BondRedeem({ bond }: IBondRedeem) {
   });
 
   const isBondLoading = useSelector<IReduxState, boolean>(state => state.bonding.loading ?? true);
-  const bondMaturationBlock = useSelector<IReduxState, number>(state => {
+  const bondMaturationTime = useSelector<IReduxState, number>(state => {
     //@ts-ignore
-    return state.account[bond] && state.account[bond].bondMaturationBlock;
+    return state.account[bond] && state.account[bond].bondMaturationTime;
   });
 
   const vestingTerm = useSelector<IReduxState, number>(state => {
@@ -48,7 +48,7 @@ function BondRedeem({ bond }: IBondRedeem) {
   }
 
   const vestingTime = () => {
-    return prettyVestingPeriod(currentBlockTime, bondMaturationBlock);
+    return prettyVestingPeriod(currentBlockTime, bondMaturationTime);
   };
 
   const vestingPeriod = () => {

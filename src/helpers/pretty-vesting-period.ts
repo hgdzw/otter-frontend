@@ -1,12 +1,11 @@
 import { prettifySeconds } from './prettify-seconds';
-import { secondsUntilBlock } from './seconds-until-block';
 
-export const prettyVestingPeriod = (currentBlock: number, vestingBlock: number) => {
-  if (vestingBlock === 0) {
+export const prettyVestingPeriod = (currentBlockTime: number, vestingTime: number) => {
+  if (vestingTime === 0) {
     return '';
   }
 
-  const seconds = secondsUntilBlock(currentBlock, vestingBlock);
+  const seconds = vestingTime - currentBlockTime;
   if (seconds < 0) {
     return 'Fully Vested';
   }

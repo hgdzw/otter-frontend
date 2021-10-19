@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { secondsUntilBlock, prettifySeconds } from '../../helpers';
+import { prettifySeconds } from '../../helpers';
 import { Box } from '@material-ui/core';
 import './rebasetimer.scss';
 import { Skeleton } from '@material-ui/lab';
@@ -7,8 +7,8 @@ import { useMemo } from 'react';
 import { IReduxState } from '../../store/slices/state.interface';
 
 function RebaseTimer() {
-  const currentBlock = useSelector<IReduxState, number>(state => {
-    return state.app.currentBlock;
+  const currentBlockTime = useSelector<IReduxState, number>(state => {
+    return state.app.currentBlockTime;
   });
 
   const nextRebase = useSelector<IReduxState, number>(state => {
@@ -16,16 +16,16 @@ function RebaseTimer() {
   });
 
   const timeUntilRebase = useMemo(() => {
-    if (currentBlock && nextRebase) {
-      const seconds = secondsUntilBlock(currentBlock, nextRebase);
+    if (currentBlockTime && nextRebase) {
+      const seconds = nextRebase - currentBlockTime;
       return prettifySeconds(seconds);
     }
-  }, [currentBlock, nextRebase]);
+  }, [currentBlockTime, nextRebase]);
 
   return (
     <Box className="rebase-timer">
       <p>
-        {currentBlock ? (
+        {currentBlockTime ? (
           timeUntilRebase ? (
             <>
               <strong>{timeUntilRebase}</strong> to Next Rebase

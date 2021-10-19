@@ -64,7 +64,7 @@ export const loadAppDetails = createAsyncThunk(
     const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
 
     const currentIndex = await stakingContract.index();
-    const nextRebase = epoch.endBlock.toNumber();
+    const nextRebase = epoch.endTime.toNumber();
 
     const rawMarketPrice = await getMarketPrice(networkID, provider);
     const marketPrice = Number(((rawMarketPrice.toNumber() / Math.pow(10, 9)) * daiPrice).toFixed(2));

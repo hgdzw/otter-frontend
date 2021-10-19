@@ -7,7 +7,6 @@ export * from './contract-for-reserve';
 export * from './get-market-price';
 export * from './shorten';
 export * from './trim';
-export * from './seconds-until-block';
 export * from './prettify-seconds';
 export * from './pretty-vesting-period';
 export * from './get-token-image';
