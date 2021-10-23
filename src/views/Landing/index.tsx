@@ -1,35 +1,50 @@
-import React from 'react';
 import './landing.scss';
 import Header from './components/Header';
+import Stat from './components/Stat';
+import { Box, Grid, Link, Paper } from '@material-ui/core';
+import Shell from './shell.png';
+import LeftMountain from './left_mountain.png';
+import RightMountain from './right_mountain.png';
+import SecondSection from './components/SecondSection';
 import Footer from './components/Footer';
-import { Link } from '@material-ui/core';
 
 function Landing() {
   return (
-    <div className="landing-root">
+    <div className="landing">
       <Header />
-      <div className="landing-main">
-        <div className="landing-main-title-wrap">
-          <p>The Decentralized</p>
-          <p>Wonderland</p>
+      <section className="landing__first-section">
+        <div className="landing__first-section__title">
+          <h1>
+            Otter<span style={{ color: '#FF6854' }}>C</span>lam
+          </h1>
         </div>
-        <div className="landing-main-help-text-wrap">
-          <p>Financial tools to grow your wealth - stake and earn</p>
-          <p>compounding interest on the Avalanche Network</p>
+        <div className="landing__first-section__subtitle">
+          <p>Wen (3,3) becomes (🦦,🦦)</p>
         </div>
-        <div className="landing-main-btns-wrap">
-          <Link href="https://app.wonderland.money" target="_blank" rel="noreferrer">
-            <div className="landing-main-btn">
-              <p>Enter App</p>
+        <div className="landing__first-section__body">
+          <div className="landing__first-section__body__left">
+            <div className="landing__first-section__body__title">
+              <p>The Decentralized</p>
+              <p>Reversed Memecoin</p>
             </div>
-          </Link>
-          <Link href="https://wonderland.gitbook.io/wonderland/" target="_blank" rel="noreferrer">
-            <div className="landing-main-btn">
-              <p>Documentation</p>
+            <div className="landing__first-section__body__subtitle">
+              <p>The first store of value meme</p>
             </div>
-          </Link>
+          </div>
+          <Paper style={{ flex: 1, marginLeft: 30, height: 320 }} />
         </div>
-      </div>
+        <div className="landing__first-section__footer">
+          <img className="landing__first-section__footer__shell" src={Shell} alt="shell" />
+          <div className="landing__first-section__footer__wave" />
+          <img className="landing__first-section__footer__left-mountain" src={LeftMountain} alt="mountain" />
+          <img className="landing__first-section__footer__right-mountain" src={RightMountain} alt="mountain" />
+          <div className="landing__first-section__footer__banner">
+            IDO will be launched on Nov, 1, 2021, 8:00 (UTC+8)
+          </div>
+        </div>
+      </section>
+      <Stat />
+      <SecondSection />
       <Footer />
     </div>
   );

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './header.scss';
-import { ReactComponent as WonderlandIcon } from '../../../../assets/icons/wonderland-nav-header.svg';
-import { SvgIcon, Link, Box, Popper, Fade } from '@material-ui/core';
-import { ReactComponent as GitHub } from '../../../../assets/icons/github.svg';
-import { ReactComponent as Twitter } from '../../../../assets/icons/twitter.svg';
-import { ReactComponent as Telegram } from '../../../../assets/icons/telegram.svg';
+import { Link } from '@material-ui/core';
+import HeaderLogo from './header-logo.png';
+import { DiscordLink, DocsLink, GithubLink, TwitterLink } from 'src/constants';
 
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -17,14 +15,14 @@ function Header() {
 
   return (
     <div className="landing-header">
-      <SvgIcon
-        color="primary"
-        component={WonderlandIcon}
-        viewBox="0 0 130 60"
-        //@ts-ignore
-        style={{ minWdth: '130px', minHeight: '56px', width: '130px' }}
-      />
-      <div className="landing-header-nav-wrap">
+      <div className="landing-header-logo">
+        <img src={HeaderLogo} alt="logo" style={{ width: '177px', height: '40px' }} />
+      </div>
+      <Link href={TwitterLink}>Twitter</Link>
+      <Link href={DiscordLink}>Discord</Link>
+      <Link href={GithubLink}>Github</Link>
+      <Link href={DocsLink}>Docs</Link>
+      {/* <div className="landing-header-nav-wrap">
         <Box
           component="div"
           onMouseEnter={e => handleClick(e)}
@@ -57,7 +55,7 @@ function Header() {
             )}
           </Popper>
         </Box>
-      </div>
+      </div> */}
     </div>
   );
 }

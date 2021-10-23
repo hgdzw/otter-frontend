@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@material-ui/core/styles';
 import { useEffect, useState, useCallback } from 'react';
 import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,8 +14,6 @@ import Sidebar from '../components/Sidebar';
 import TopBar from '../components/Header';
 import NavDrawer from '../components/Sidebar/NavDrawer';
 import NotFound from '../views/404/NotFound';
-
-import { light as lightTheme } from '../themes';
 
 import { BONDS } from '../constants';
 import './style.scss';
@@ -154,7 +151,7 @@ function App() {
   if (isAppLoading) return <Loading />;
 
   return (
-    <ThemeProvider theme={lightTheme}>
+    <>
       <div className="root-background" />
       <div className={`app ${isSmallerScreen && 'tablet'} ${isSmallScreen && 'mobile'}`}>
         <TopBar drawe={!isSmallerScreen} handleDrawerToggle={handleDrawerToggle} />
@@ -192,7 +189,7 @@ function App() {
           </Switch>
         </div>
       </div>
-    </ThemeProvider>
+    </>
   );
 }
 

@@ -8,15 +8,17 @@
 html,
 body,
 #root {
-  font-family: 'Square';
+  font-family: 'Gilroy';
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  // overflow-x: hidden;
 }
 
 body {
   margin: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .app {
@@ -27,7 +29,8 @@ body {
   flex-direction: column;
   z-index: 1;
   background-size: cover;
-  font-family: 'Square';
+  font-family: 'Gilroy';
+  font-weight: bold;
   overflow: hidden;
   // transform: translate3d(0, 0, 0);
   // -webkit-transform: translate3d(0, 0, 0);
@@ -90,7 +93,7 @@ a:hover svg {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../assets/icons/background.png');
+  // background-image: url('../assets/icons/background.png');
   background-size: cover;
   z-index: -1;
 }

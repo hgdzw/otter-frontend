@@ -1,22 +1,37 @@
 .landing-header {
-  padding: 25px 10%;
+  height: 60px;
+  padding: 0 10%;
   display: flex;
   flex-direction: row;
+  background-color: #ffffff;
+  align-items: center;
+  box-shadow: 0px 1px 0px #dbe6ec;
 
-  .landing-header-nav-wrap {
+  &-logo {
+    flex: 1;
+  }
+
+  a {
+    margin: 2%;
+    @media screen and (max-width: 596px) {
+      display: none;
+    }
+  }
+
+  &-nav-wrap {
     margin-left: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     cursor: default;
+  }
 
-    .landing-header-nav-text {
-      font-family: Montserrat Medium;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      color: #ffffff;
-    }
+  &-nav-text {
+    font-family: Montserrat Medium;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
   }
 }
 

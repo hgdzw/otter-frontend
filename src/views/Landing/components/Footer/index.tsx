@@ -1,62 +1,41 @@
-import React from 'react';
-import './footer.scss';
-import { Grid } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-import { IReduxState } from '../../../../store/slices/state.interface';
-import { trim } from '../../../../helpers';
-import { Skeleton } from '@material-ui/lab';
+import { Link } from '@material-ui/core';
+import { TwitterLink } from 'src/constants';
+import styles from './style.module.scss';
+import TwitterIcon from './twitter.svg';
+import HeaderLogo from '../Header/header-logo.png';
+import PolygonLogo from './polygon-logo.png';
+import XIcon from './x-icon.svg';
 
-function Footer() {
-  const isAppLoading = useSelector<IReduxState, boolean>(state => state.app.loading);
-  const stakingAPY = useSelector<IReduxState, number>(state => {
-    return state.app.stakingAPY;
-  });
-  const treasuryBalance = useSelector<IReduxState, number>(state => {
-    return state.app.treasuryBalance;
-  });
+interface LinkButtonProps {
+  name: string;
+  href: string;
+  image: any;
+}
 
-  const trimmedStakingAPY = trim(stakingAPY * 100, 1);
-
+function LinkButton({ name, href, image }: LinkButtonProps) {
   return (
-    <div className="landing-footer">
-      <Grid container spacing={1}>
-        {/* <Grid item xs={12} sm={4} md={4} lg={4}>
-          <div className="landing-footer-item-wrap">
-            <p className="landing-footer-item-title">Total Staked</p>
-          </div>
-        </Grid> */}
-        <Grid item xs={12} sm={6} md={6} lg={6}>
-          <div className="landing-footer-item-wrap">
-            <p className="landing-footer-item-title">Treasury Balance</p>
-            <p className="landing-footer-item-value">
-              {isAppLoading ? (
-                <Skeleton width="180px" />
-              ) : (
-                new Intl.NumberFormat('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                  maximumFractionDigits: 0,
-                  minimumFractionDigits: 0,
-                }).format(treasuryBalance)
-              )}
-            </p>
-          </div>
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={6}>
-          <div className="landing-footer-item-wrap">
-            <p className="landing-footer-item-title">Current APY</p>
-            <p className="landing-footer-item-value">
-              {stakingAPY ? (
-                <>{new Intl.NumberFormat('en-US').format(Number(trimmedStakingAPY))}%</>
-              ) : (
-                <Skeleton width="150px" />
-              )}
-            </p>
-          </div>
-        </Grid>
-      </Grid>
-    </div>
+    <Link className={styles.linkButton} href={href}>
+      <img className={styles.linkImage} src={image} alt={name} />
+      <p>{name}</p>
+    </Link>
   );
 }
 
-export default Footer;
+export default function Footer() {
+  return (
+    <footer className={styles.footer}>
+      <h2 className={styles.title}>Join Our Community</h2>
+      <div className={styles.buttonList}>
+        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
+        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
+        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
+        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
+      </div>
+      <div className={styles.logos}>
+        <img src={HeaderLogo} alt="logo" />
+        <img src={XIcon} alt="x" style={{ height: 20 }} />
+        <img src={PolygonLogo} alt="logo" />
+      </div>
+    </footer>
+  );
+}

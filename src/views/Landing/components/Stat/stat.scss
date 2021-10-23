@@ -1,6 +1,7 @@
 .landing-footer {
   margin-top: auto;
   padding: 32px 30%;
+  background-color: #1D2654;
 
   .landing-footer-item-wrap {
     display: flex;
@@ -9,20 +10,14 @@
     justify-content: center;
 
     .landing-footer-item-title {
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: normal;
       font-size: 18px;
       line-height: 22px;
       color: #ffffff;
-      margin-bottom: 4px;
+      margin-bottom: 15px;
     }
 
     .landing-footer-item-value {
-      font-family: Montserrat Bold;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 30px;
+      font-size: 32px;
       color: #ffffff;
     }
   }

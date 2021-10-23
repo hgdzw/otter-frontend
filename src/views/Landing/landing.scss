@@ -1,107 +1,127 @@
-.landing-root {
-  min-height: 100vh;
-  background-image: url('../../assets/icons/landing.png');
-  background-size: cover;
+.landing {
+  background-color: #f7f9fb;
   display: flex;
   flex-direction: column;
+  color: #1d2654;
 
-  .landing-main {
+  &__first-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .landing-main-title-wrap {
+    &__title {
       text-align: center;
       margin-top: 80px;
-      margin-bottom: 20px;
 
-      p {
-        font-family: Montserrat Bold;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 55px;
-        color: #ffffff;
+      h1 {
+        font-weight: 800;
+        font-size: 60px;
+        margin: 0;
       }
     }
 
-    .landing-main-help-text-wrap {
-      text-align: center;
-      margin-bottom: 30px;
-
+    &__subtitle {
       p {
-        font-family: Montserrat Medium;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        color: #ffffff;
+        font-size: 24px;
       }
     }
 
-    .landing-main-btns-wrap {
+    &__body {
+      margin-top: 60px;
+      margin-bottom: 80px;
       display: flex;
       flex-direction: row;
+      width: 80%;
 
-      a {
-        text-decoration: none;
-      }
-
-      .landing-main-btn {
-        margin: 0 15px;
-        padding: 14px 26px;
-        max-width: 200px;
-        background: rgba(255, 255, 255, 0.2);
-        box-shadow: 0px 0px 10px rgba(44, 39, 109, 0.1);
-        border-radius: 10px;
-        cursor: pointer;
-        text-align: center;
-
-        p {
-          font-family: Montserrat Semibold;
-          font-style: normal;
-          font-weight: 600;
-          font-size: 18px;
-          line-height: 22px;
-          color: #ffffff;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .landing-root {
-    background-image: url('../../assets/icons/background.png');
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .landing-root {
-    .landing-main {
-      .landing-main-title-wrap {
-        p {
-          font-size: 40px;
-        }
-      }
-
-      .landing-main-help-text-wrap {
-        p {
-          font-size: 16px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 410px) {
-  .landing-root {
-    .landing-main {
-      .landing-main-btns-wrap {
+      @media screen and (max-width: 596px) {
         flex-direction: column;
+        align-items: center;
+        width: 90%;
+      }
 
-        .landing-main-btn {
-          margin: 15px;
+      &__left {
+        flex: 1;
+      }
+
+      &__title {
+        font-size: 48px;
+        @media screen and (max-width: 596px) {
+          text-align: center;
+        }
+        @media screen and (max-width: 1200px) {
+          font-size: 32px;
+        }
+      }
+
+      &__subtitle {
+        font-weight: 500;
+        font-size: 24px;
+        margin-top: 16px;
+      }
+    }
+
+    &__footer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      &__wave {
+        width: 100%;
+        height: 25px;
+        background-image: url(./wave.svg);
+        background-repeat: repeat-x;
+        position: relative;
+        z-index: 100;
+      }
+
+      &__shell {
+        width: 60px;
+        height: 55px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 101;
+      }
+
+      &__left-mountain {
+        width: 153px;
+        height: 85px;
+        position: absolute;
+        top: -60px;
+
+        @media screen and (max-width: 596px) {
+          display: none;
+        }
+      }
+
+      &__right-mountain {
+        width: 358px;
+        height: 131px;
+        position: absolute;
+        right: 0;
+        top: -106px;
+
+        @media screen and (max-width: 596px) {
+          display: none;
+        }
+      }
+
+      &__banner {
+        width: 100%;
+        height: 156px;
+        background-color: #e9f0f3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+
+        @media screen and (max-width: 596px) {
+          text-align: center;
         }
       }
     }
   }
+
 }
