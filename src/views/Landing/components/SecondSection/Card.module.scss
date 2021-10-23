@@ -31,7 +31,7 @@
 
 .title {
   display: flex;
-  color: #5e6e99;
+  color: #ff6854;
   align-items: center;
   font-size: 24px;
   margin: 0;
@@ -51,11 +51,15 @@
 
 .subtitle {
   margin: 10px 0;
-  font-size: 36px;
+  font-weight: 800;
+  font-size: 48px;
   line-height: 54px;
 }
 
 .desc {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 20px;
+
+  @media (max-width: 596px) {
+    font-size: 18px;
+  }
 }
