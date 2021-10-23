@@ -6,7 +6,7 @@ const lightTheme = {
   white: '#ffffff',
   gold: '#F8CC82',
   gray: '#A3A3A3',
-  textHighlightColor: '#93AEBC', // "#F4D092",
+  textHighlightColor: '#3B4BD8',
   backgroundColor: '#AFCDE9',
   background: 'linear-gradient(180deg, #AFCDE9 1%, #F7FBE7 100%)',
   paperBg: 'rgba(0, 0, 0, 0.2)',

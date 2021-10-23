@@ -38,6 +38,12 @@
   justify-content: center;
   align-items: center;
 
+  &:hover {
+    background: white;
+    box-shadow: 0px 4px 20px #e9f0f3;
+    transition: ease-in 100ms;
+  }
+
   @media screen and (max-width: 1000px) {
     width: 160px;
     height: 112px;
