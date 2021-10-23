@@ -34,9 +34,9 @@ export default function Footer() {
         {/* <LinkButton name="Docs" href={DocsLink} image={TwitterIcon} /> */}
       </div>
       <div className={styles.logos}>
-        <img src={HeaderLogo} alt="logo" style={{ height: 40 }} />
+        <img src={HeaderLogo} alt="logo" />
         <img src={XIcon} alt="x" style={{ width: 20, height: 20 }} />
-        <img src={PolygonLogo} alt="logo" style={{ height: 32 }} />
+        <img src={PolygonLogo} alt="logo" />
       </div>
     </footer>
   );
