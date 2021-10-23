@@ -34,7 +34,7 @@
       width: 80%;
 
       @media screen and (max-width: 596px) {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
         width: 90%;
       }
@@ -133,6 +133,18 @@
       img {
         width: 32px;
         height: 32px;
+      }
+    }
+
+    .otter01 {
+      img {
+        width: 540px;
+        height: 474px;
+
+        @media screen and (max-width: 596px) {
+          width: 335px;
+          height: 294px;
+        }
       }
     }
   }

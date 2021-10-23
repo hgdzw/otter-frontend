@@ -11,6 +11,7 @@ import { DiscordLink, GithubLink, TwitterLink } from 'src/constants';
 import TwitterIcon from './images/twitter.svg';
 import DiscordIcon from './images/icon_discord.svg';
 import GithubIcon from './images/icon_github.svg';
+import Otter01 from './images/otter_01.png';
 
 function Landing() {
   return (
@@ -46,7 +47,9 @@ function Landing() {
               </Link>
             </div>
           </div>
-          <Paper style={{ flex: 1, marginLeft: 30, height: 320 }} />
+          <div className="otter01">
+            <img src={Otter01} alt="otter01" />
+          </div>
         </div>
         <div className="landing__first-section__footer">
           <img className="landing__first-section__footer__shell" src={Shell} alt="shell" />
