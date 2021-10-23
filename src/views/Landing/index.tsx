@@ -7,8 +7,10 @@ import LeftMountain from './left_mountain.png';
 import RightMountain from './right_mountain.png';
 import SecondSection from './components/SecondSection';
 import Footer from './components/Footer';
-import { TwitterLink } from 'src/constants';
+import { DiscordLink, GithubLink, TwitterLink } from 'src/constants';
 import TwitterIcon from './images/twitter.svg';
+import DiscordIcon from './images/icon_discord.svg';
+import GithubIcon from './images/icon_github.svg';
 
 function Landing() {
   return (
@@ -36,14 +38,11 @@ function Landing() {
               <Link href={TwitterLink} className="community-icon-link">
                 <img src={TwitterIcon} />
               </Link>
-              <Link href={TwitterLink} className="community-icon-link">
-                <img src={TwitterIcon} />
+              <Link href={DiscordLink} className="community-icon-link">
+                <img src={DiscordIcon} />
               </Link>
-              <Link href={TwitterLink} className="community-icon-link">
-                <img src={TwitterIcon} />
-              </Link>
-              <Link href={TwitterLink} className="community-icon-link">
-                <img src={TwitterIcon} />
+              <Link href={GithubLink} className="community-icon-link">
+                <img src={GithubIcon} />
               </Link>
             </div>
           </div>

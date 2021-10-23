@@ -1,7 +1,9 @@
 import { Link } from '@material-ui/core';
-import { TwitterLink } from 'src/constants';
+import { DiscordLink, DocsLink, GithubLink, TwitterLink } from 'src/constants';
 import styles from './style.module.scss';
 import TwitterIcon from '../../images/twitter.svg';
+import DiscordIcon from '../../images/icon_discord.svg';
+import GithubIcon from '../../images/icon_github.svg';
 import HeaderLogo from '../Header/header-logo.png';
 import PolygonLogo from './polygon-logo.png';
 import XIcon from './x-icon.svg';
@@ -27,9 +29,9 @@ export default function Footer() {
       <h2 className={styles.title}>Join Our Community</h2>
       <div className={styles.buttonList}>
         <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
-        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
-        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
-        <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
+        <LinkButton name="Discord" href={DiscordLink} image={DiscordIcon} />
+        <LinkButton name="Github" href={GithubLink} image={GithubIcon} />
+        <LinkButton name="Docs" href={DocsLink} image={TwitterIcon} />
       </div>
       <div className={styles.logos}>
         <img src={HeaderLogo} alt="logo" style={{ height: 40 }} />
