@@ -21,7 +21,7 @@ function Header() {
       <Link href={TwitterLink}>Twitter</Link>
       <Link href={DiscordLink}>Discord</Link>
       <Link href={GithubLink}>Github</Link>
-      <Link href={DocsLink}>Docs</Link>
+      {/* <Link href={DocsLink}>Docs</Link> */}
       {/* <div className="landing-header-nav-wrap">
         <Box
           component="div"

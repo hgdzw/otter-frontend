@@ -31,7 +31,7 @@ export default function Footer() {
         <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
         <LinkButton name="Discord" href={DiscordLink} image={DiscordIcon} />
         <LinkButton name="Github" href={GithubLink} image={GithubIcon} />
-        <LinkButton name="Docs" href={DocsLink} image={TwitterIcon} />
+        {/* <LinkButton name="Docs" href={DocsLink} image={TwitterIcon} /> */}
       </div>
       <div className={styles.logos}>
         <img src={HeaderLogo} alt="logo" style={{ height: 40 }} />
