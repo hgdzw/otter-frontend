@@ -56,9 +56,7 @@ function Landing() {
           <div className="landing__first-section__footer__wave" />
           <img className="landing__first-section__footer__left-mountain" src={LeftMountain} alt="mountain" />
           <img className="landing__first-section__footer__right-mountain" src={RightMountain} alt="mountain" />
-          <div className="landing__first-section__footer__banner">
-            IDO will be launched on Nov, 1, 2021, 8:00 (UTC+8)
-          </div>
+          <div className="landing__first-section__footer__banner">IDO Soon~</div>
         </div>
       </section>
       <Stat />
