@@ -1,12 +1,14 @@
 import './landing.scss';
 import Header from './components/Header';
 import Stat from './components/Stat';
-import { Box, Grid, Link, Paper } from '@material-ui/core';
+import { Link, Paper } from '@material-ui/core';
 import Shell from './shell.png';
 import LeftMountain from './left_mountain.png';
 import RightMountain from './right_mountain.png';
 import SecondSection from './components/SecondSection';
 import Footer from './components/Footer';
+import { TwitterLink } from 'src/constants';
+import TwitterIcon from './images/twitter.svg';
 
 function Landing() {
   return (
@@ -29,6 +31,20 @@ function Landing() {
             </div>
             <div className="landing__first-section__body__subtitle">
               <p>The first store of value meme</p>
+            </div>
+            <div className="community-icons">
+              <Link href={TwitterLink} className="community-icon-link">
+                <img src={TwitterIcon} />
+              </Link>
+              <Link href={TwitterLink} className="community-icon-link">
+                <img src={TwitterIcon} />
+              </Link>
+              <Link href={TwitterLink} className="community-icon-link">
+                <img src={TwitterIcon} />
+              </Link>
+              <Link href={TwitterLink} className="community-icon-link">
+                <img src={TwitterIcon} />
+              </Link>
             </div>
           </div>
           <Paper style={{ flex: 1, marginLeft: 30, height: 320 }} />

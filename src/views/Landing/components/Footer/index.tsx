@@ -1,7 +1,7 @@
 import { Link } from '@material-ui/core';
 import { TwitterLink } from 'src/constants';
 import styles from './style.module.scss';
-import TwitterIcon from './twitter.svg';
+import TwitterIcon from '../../images/twitter.svg';
 import HeaderLogo from '../Header/header-logo.png';
 import PolygonLogo from './polygon-logo.png';
 import XIcon from './x-icon.svg';
@@ -32,9 +32,9 @@ export default function Footer() {
         <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
       </div>
       <div className={styles.logos}>
-        <img src={HeaderLogo} alt="logo" />
-        <img src={XIcon} alt="x" style={{ height: 20 }} />
-        <img src={PolygonLogo} alt="logo" />
+        <img src={HeaderLogo} alt="logo" style={{ height: 40 }} />
+        <img src={XIcon} alt="x" style={{ width: 20, height: 20 }} />
+        <img src={PolygonLogo} alt="logo" style={{ height: 32 }} />
       </div>
     </footer>
   );

@@ -122,6 +122,18 @@
         }
       }
     }
-  }
 
+    .community-icons {
+      display: flex;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .community-icon-link {
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
 }
