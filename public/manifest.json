@@ -1,14 +1,19 @@
 {
-  "short_name": "Wonderland",
+  "short_name": "OtterClam",
   "start_url": ".",
   "homepage": "./",
-  "name": "Wonderland",
+  "name": "OtterClam",
   "launch_path": "/public/index.html",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     },
     {
       "src": "logo192.png",
