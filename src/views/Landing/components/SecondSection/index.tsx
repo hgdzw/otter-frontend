@@ -13,14 +13,14 @@ function SecondSection() {
           num={1}
           title="Treasury Revenue"
           subtitle="Bonds & LP fees"
-          desc="Bond sales and LP Fees increase Treasury Revenue and lock in liquidity and help control CLAM supply"
+          desc="Bond sales and LP Fees increase Otter's Treasury Revenue and lock in liquidity and help control CLAM supply"
           img={HowItWorks01}
         />
         <Card
           num={2}
           title="Treasury Growth"
           subtitle="Otter's Treasury"
-          desc="Treasury inflow is used to increase Treasury Balance and back outstanding CLAM tokens and regulate staking APY"
+          desc="Treasury inflow is used to increase Otter's Treasury Balance and back outstanding CLAM tokens and regulate staking APY"
           img={HowItWorks02}
           reverse
         />
@@ -28,7 +28,7 @@ function SecondSection() {
           num={3}
           title="Staking Rewards"
           subtitle="CLAM Token"
-          desc="Compounds yields automatically through a treasury backed currency with intrinsic value"
+          desc="Compounds yields automatically through a treasury backed memecoin with intrinsic value"
           img={HowItWorks03}
         />
       </div>

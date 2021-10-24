@@ -10,7 +10,7 @@ const commonSettings = {
   direction: 'ltr',
   typography: {
     fontSize: 16,
-    fontFamily: 'Square',
+    fontFamily: 'Gilroy',
     h1: {
       fontSize: '3rem',
     },
