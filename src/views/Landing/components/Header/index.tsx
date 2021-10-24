@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './header.scss';
 import { Link } from '@material-ui/core';
 import HeaderLogo from './header-logo.png';
@@ -13,10 +13,28 @@ function Header() {
 
   const open = Boolean(anchorEl);
 
+  const [scrolled, setScrolled] = useState(false);
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 0) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  }, []);
+  let navbarClasses = ['landing-header'];
+  if (scrolled) {
+    navbarClasses.push('scrolled');
+  }
+
   return (
-    <div className="landing-header">
+    <header className={navbarClasses.join(' ')}>
       <div className="landing-header-logo">
-        <img src={HeaderLogo} alt="logo" style={{ width: '177px', height: '40px' }} />
+        <img src={HeaderLogo} alt="logo" />
       </div>
       <Link href={TwitterLink}>Twitter</Link>
       <Link href={DiscordLink}>Discord</Link>
@@ -56,7 +74,7 @@ function Header() {
           </Popper>
         </Box>
       </div> */}
-    </div>
+    </header>
   );
 }
 
