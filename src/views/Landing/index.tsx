@@ -29,7 +29,7 @@ function Landing() {
           <div className="landing__first-section__body__left">
             <div className="landing__first-section__body__title">
               <p>The Decentralized</p>
-              <p>Reversed Memecoin</p>
+              <p>Reserve Memecoin</p>
             </div>
             <div className="landing__first-section__body__subtitle">
               <p>The first store of value meme</p>
