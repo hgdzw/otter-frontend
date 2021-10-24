@@ -5,10 +5,11 @@ export interface Props {
   title: string;
   subtitle: string;
   desc: string;
+  img: any;
   reverse?: boolean;
 }
 
-export default function Card({ num, title, subtitle, desc, reverse = false }: Props) {
+export default function Card({ num, title, subtitle, desc, img, reverse = false }: Props) {
   return (
     <div className={reverse ? styles.containerReverse : styles.container}>
       <div className={styles.text}>
@@ -20,7 +21,7 @@ export default function Card({ num, title, subtitle, desc, reverse = false }: Pr
         <p className={styles.desc}>{desc}</p>
       </div>
       <div className={styles.image}>
-        <div style={{ width: 'auto', height: 320, backgroundColor: '#E9F0F3' }}></div>
+        <img src={img} alt={title} />
       </div>
     </div>
   );

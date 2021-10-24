@@ -3,8 +3,6 @@ import Header from './components/Header';
 import Stat from './components/Stat';
 import { Link, Paper } from '@material-ui/core';
 import Shell from './shell.png';
-import LeftMountain from './left_mountain.png';
-import RightMountain from './right_mountain.png';
 import SecondSection from './components/SecondSection';
 import Footer from './components/Footer';
 import { DiscordLink, GithubLink, TwitterLink } from 'src/constants';
@@ -12,6 +10,7 @@ import TwitterIcon from './images/twitter.svg';
 import DiscordIcon from './images/icon_discord.svg';
 import GithubIcon from './images/icon_github.svg';
 import Otter01 from './images/otter_01.png';
+import Countdown from './components/Countdown';
 
 function Landing() {
   return (
@@ -54,12 +53,13 @@ function Landing() {
         <div className="landing__first-section__footer">
           <img className="landing__first-section__footer__shell" src={Shell} alt="shell" />
           <div className="landing__first-section__footer__wave" />
-          <img className="landing__first-section__footer__left-mountain" src={LeftMountain} alt="mountain" />
-          <img className="landing__first-section__footer__right-mountain" src={RightMountain} alt="mountain" />
-          <div className="landing__first-section__footer__banner">IDO Soon~</div>
+          <div className="landing__first-section__footer__banner">
+            Initial Discord Offering<span style={{ color: '#3B4BD8' }}>Early November</span>
+          </div>
         </div>
       </section>
-      <Stat />
+      {/* <Stat /> */}
+      <Countdown />
       <SecondSection />
       <Footer />
     </div>

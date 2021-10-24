@@ -31,7 +31,7 @@
       margin-bottom: 80px;
       display: flex;
       flex-direction: row;
-      width: 80%;
+      width: 70%;
 
       @media screen and (max-width: 596px) {
         flex-direction: column-reverse;
@@ -69,7 +69,7 @@
       &__wave {
         width: 100%;
         height: 25px;
-        background-image: url(./wave.svg);
+        background-image: url(./images/wave.svg);
         background-repeat: repeat-x;
         position: relative;
         z-index: 100;
@@ -84,33 +84,10 @@
         z-index: 101;
       }
 
-      &__left-mountain {
-        width: 153px;
-        height: 85px;
-        position: absolute;
-        top: -60px;
-
-        @media screen and (max-width: 596px) {
-          display: none;
-        }
-      }
-
-      &__right-mountain {
-        width: 358px;
-        height: 131px;
-        position: absolute;
-        right: 0;
-        top: -106px;
-
-        @media screen and (max-width: 596px) {
-          display: none;
-        }
-      }
-
       &__banner {
         width: 100%;
         height: 156px;
-        background-color: #e9f0f3;
+        background-color: #fff;
         display: flex;
         flex-direction: column;
         justify-content: center;

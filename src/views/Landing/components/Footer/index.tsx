@@ -1,6 +1,6 @@
 import { Link } from '@material-ui/core';
 import { DiscordLink, DocsLink, GithubLink, TwitterLink } from 'src/constants';
-import styles from './style.module.scss';
+import styles from './footer.module.scss';
 import TwitterIcon from '../../images/twitter.svg';
 import DiscordIcon from '../../images/icon_discord.svg';
 import GithubIcon from '../../images/icon_github.svg';
@@ -33,6 +33,7 @@ export default function Footer() {
         <LinkButton name="Github" href={GithubLink} image={GithubIcon} />
         {/* <LinkButton name="Docs" href={DocsLink} image={TwitterIcon} /> */}
       </div>
+      <p className={styles.makeit}>Let's make it (🦦,🦦)</p>
       <div className={styles.logos}>
         <img src={HeaderLogo} alt="logo" />
         <img src={XIcon} alt="x" style={{ width: 20, height: 20 }} />
