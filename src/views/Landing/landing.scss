@@ -111,6 +111,10 @@
     }
 
     .community-icon-link {
+      transition: 400ms;
+      &:hover {
+        opacity: 0.8;
+      }
       img {
         width: 32px;
         height: 32px;

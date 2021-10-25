@@ -36,6 +36,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: ease-in 100ms;
 
   &:hover {
     background: white;
