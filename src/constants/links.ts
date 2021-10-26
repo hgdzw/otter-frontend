@@ -1,4 +1,4 @@
-export const DiscordLink = 'https://discord.gg/gRJDX5NXFA';
+export const DiscordLink = 'https://discord.gg/otterclam';
 
 export const TwitterLink = 'https://twitter.com/otterclam';
 
