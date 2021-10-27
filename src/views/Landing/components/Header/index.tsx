@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './header.scss';
 import { Link } from '@material-ui/core';
 import HeaderLogo from './header-logo.png';
-import { DiscordLink, DocsLink, GithubLink, TwitterLink } from 'src/constants';
+import { DiscordLink, DocsLink, GithubLink, TwitterLink, MediumLink } from 'src/constants';
 
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,6 +39,7 @@ function Header() {
       <Link href={TwitterLink}>Twitter</Link>
       <Link href={DiscordLink}>Discord</Link>
       <Link href={GithubLink}>Github</Link>
+      <Link href={MediumLink}>Medium</Link>
       {/* <Link href={DocsLink}>Docs</Link> */}
       {/* <div className="landing-header-nav-wrap">
         <Box

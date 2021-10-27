@@ -4,6 +4,7 @@ import styles from './footer.module.scss';
 import TwitterIcon from '../../images/twitter.svg';
 import DiscordIcon from '../../images/icon_discord.svg';
 import GithubIcon from '../../images/icon_github.svg';
+import DocIcon from '../../images/icon_doc.svg';
 import HeaderLogo from '../Header/header-logo.png';
 import PolygonLogo from './polygon-logo.png';
 import XIcon from './x-icon.svg';
@@ -31,7 +32,7 @@ export default function Footer() {
         <LinkButton name="Twitter" href={TwitterLink} image={TwitterIcon} />
         <LinkButton name="Discord" href={DiscordLink} image={DiscordIcon} />
         <LinkButton name="Github" href={GithubLink} image={GithubIcon} />
-        {/* <LinkButton name="Docs" href={DocsLink} image={TwitterIcon} /> */}
+        <LinkButton name="Docs" href={DocsLink} image={DocIcon} />
       </div>
       <p className={styles.makeit}>Let's make it (🦦,🦦)</p>
       <div className={styles.logos}>
