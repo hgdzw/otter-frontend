@@ -102,6 +102,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   );
 
   const _checkNetwork = (otherChainID: number): Boolean => {
+    // FIXME: enable alert after launch
     // if (Number(otherChainID) !== Networks.AVAX) {
     //   alert("Please connect your wallet to Avalanche network to use Wonderland!");
     // }
