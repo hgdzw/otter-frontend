@@ -133,23 +133,34 @@ const commonSettings = {
     },
     MuiButton: {
       root: {
-        borderRadius: '5px',
+        fontFamily: 'Gilroy',
+        borderRadius: '29px',
         textTransform: 'none',
         textDecoration: 'none',
         whiteSpace: 'nowrap',
         minWidth: 'max-content',
-        maxHeight: '40px',
+        maxHeight: '57px',
+        height: '57px',
+      },
+      containedSizeLarge: {
+        fontSize: '18px',
       },
       containedPrimary: {
         border: 0,
-        fontWeight: '500',
+        fontWeight: 'bold',
       },
       containedSecondary: {
         fontWeight: '400',
       },
       outlinedPrimary: {
-        height: '33px',
+        height: '44px',
+        borderRadius: '22px',
+        border: '2px solid',
         padding: '9px 20px',
+        fontWeight: 'bold',
+        '&:hover': {
+          border: '2px solid',
+        },
       },
       outlinedSecondary: {
         textTransform: 'none',

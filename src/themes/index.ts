@@ -1,6 +1,13 @@
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import commonSettings from './global';
 
+const colors = {
+  otterDark: '#1D2654',
+  otterBlue: '#3B4BD8',
+  otterBlueHover: '#303FC7',
+  darkGray300: '434E77',
+};
+
 const lightTheme = {
   color: '#1D2654',
   white: '#ffffff',
@@ -13,15 +20,15 @@ const lightTheme = {
   modalBg: '#FAFAFAEF',
   popoverBg: 'rgba(255, 255, 255, 0.95)',
   menuBg: 'rgba(255, 255, 255, 0.5)',
-  backdropBg: 'rgba(200, 200, 200, 0.4)',
+  backdropBg: 'rgba(0, 0, 0, 0.3)',
   largeTextColor: '#759AAE',
   activeLinkColor: '#222222',
   activeLinkSvgColor: 'invert(64%) sepia(11%) saturate(934%) hue-rotate(157deg) brightness(90%) contrast(86%)',
-  // primaryButtonBG: "#759AAE",
-  primaryButtonBG: '#93AEBC',
-  primaryButtonHoverBG: '#759AAE',
+  primaryButtonColor: 'fff',
+  primaryButtonBG: colors.otterBlue,
+  primaryButtonHoverBG: colors.otterBlueHover,
   // these need fixing
-  primaryButtonHoverColor: '#333333',
+  primaryButtonHoverColor: 'fff',
   secondaryButtonHoverBG: 'rgba(54, 56, 64, 1)',
   outlinedPrimaryButtonHoverBG: '#F8CC82',
   outlinedPrimaryButtonHoverColor: '#333333',
@@ -204,14 +211,13 @@ export const light = responsiveFontSizes(
         },
         MuiButton: {
           containedPrimary: {
-            color: '#FCFCFC',
+            color: '#fff',
             backgroundColor: lightTheme.primaryButtonBG,
             '&:hover': {
               backgroundColor: lightTheme.primaryButtonHoverBG,
               color: lightTheme.primaryButtonHoverColor,
             },
             '@media (hover:none)': {
-              color: lightTheme.color,
               backgroundColor: lightTheme.primaryButtonBG,
               '&:hover': {
                 backgroundColor: lightTheme.primaryButtonHoverBG,
@@ -235,19 +241,22 @@ export const light = responsiveFontSizes(
             },
           },
           outlinedPrimary: {
-            color: lightTheme.primaryButtonBG,
-            borderColor: lightTheme.primaryButtonBG,
+            color: colors.otterDark,
+            borderColor: colors.otterDark,
+            backgroundColor: 'fff',
             '&:hover': {
-              color: lightTheme.gold,
-              backgroundColor: lightTheme.primaryButtonHoverBG,
-              borderColor: lightTheme.primaryButtonBG,
+              color: `${colors.darkGray300} !important`,
+              borderColor: `${colors.darkGray300} !important`,
+              backgroundColor: 'fff',
             },
             '@media (hover:none)': {
-              color: lightTheme.primaryButtonBG,
-              borderColor: lightTheme.primaryButtonBG,
+              color: colors.otterDark,
+              borderColor: colors.otterDark,
+              backgroundColor: 'fff',
               '&:hover': {
-                color: `${lightTheme.gold} !important`,
-                backgroundColor: `${lightTheme.primaryButtonBG} !important`,
+                backgroundColor: 'fff',
+                color: `${colors.darkGray300} !important`,
+                borderColor: `${colors.darkGray300} !important`,
               },
             },
           },

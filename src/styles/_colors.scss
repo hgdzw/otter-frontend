@@ -1,2 +1,8 @@
 
 $otter-dark: #1d2654;
+$otter-blue: #3B4BD8;
+
+:export {
+  otterDark: $otter-dark;
+  otterBlue: $otter-blue;
+}

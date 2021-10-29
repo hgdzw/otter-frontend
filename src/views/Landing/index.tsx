@@ -1,7 +1,8 @@
 import './landing.scss';
+import { useState } from 'react';
 import Header from './components/Header';
 import Stat from './components/Stat';
-import { Link, Paper } from '@material-ui/core';
+import { Backdrop, Button, Link, Paper } from '@material-ui/core';
 import Shell from './shell.png';
 import SecondSection from './components/SecondSection';
 import Footer from './components/Footer';
@@ -10,9 +11,13 @@ import TwitterIcon from './images/twitter.svg';
 import DiscordIcon from './images/icon_discord.svg';
 import GithubIcon from './images/icon_github.svg';
 import Otter01 from './images/otter_01.png';
+import CloseIcon from './images/icon_24x24_close.svg';
 import Countdown from './components/Countdown';
+import IDO from '../IDO';
 
 function Landing() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="landing">
       <Header />
@@ -54,7 +59,10 @@ function Landing() {
           <img className="landing__first-section__footer__shell" src={Shell} alt="shell" />
           <div className="landing__first-section__footer__wave" />
           <div className="landing__first-section__footer__banner">
-            Initial Discord Offering<span style={{ color: '#3B4BD8' }}>Early November</span>
+            Initial Discord Offering<span style={{ color: '#3B4BD8' }}>Nov 1, 2021 0:00 UTC</span>
+            <Button variant="outlined" color="primary" size="medium" disableElevation onClick={() => setOpen(true)}>
+              Check your whitelist eligibility
+            </Button>
           </div>
         </div>
       </section>
@@ -62,6 +70,14 @@ function Landing() {
       <Countdown />
       <SecondSection />
       <Footer />
+      <Backdrop open={open} className="ido-check">
+        <div className="ido-container">
+          <IDO />
+          <div className="close-modal-button" onClick={() => setOpen(false)}>
+            <img src={CloseIcon} />
+          </div>
+        </div>
+      </Backdrop>
     </div>
   );
 }
