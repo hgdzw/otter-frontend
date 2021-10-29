@@ -1,3 +1,5 @@
+import { RPCURL } from 'src/constants';
+
 export const getMainnetURI = (): string => {
-  return 'https://api.avax.network/ext/bc/C/rpc';
+  return RPCURL.POLYGON_MAINNET;
 };

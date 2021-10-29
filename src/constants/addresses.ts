@@ -1,6 +1,6 @@
 import { Networks } from './blockchain';
 
-const RINKEBY = {
+const POLYGON_MAINNET = {
   sCLAM_ADDRESS: '0xd416d3F7503C2Ce75f5dcddC2Aa6cf9d3D9a0d57',
   CLAM_ADDRESS: '0x060a1502813850928e90B73695FeBFcA92Fb54d0',
   DAI_ADDRESS: '0x3Ed57914fF5b648DCc32fB7D7c8Ff2738F8Dcff4',
@@ -13,7 +13,7 @@ const RINKEBY = {
     DAI_CLAM: '0x2Ea57539cdeef28AC3B8C7eCc01CbD91754B5f51',
   },
   BONDS: { DAI: '0x843556492c412Dca11C650b2b32D5D7dC095891D', DAI_CLAM: '0xE34dFDffBf10B68F761Ea58110173a59A9236d56' },
-  IDO: '0x74642dA3Ea01cC7bB51dfFF04bc19f735e84948b',
+  IDO: '0xa5e71701699152de933bc57e89EeCD3e446458Ee',
 };
 const POLYGON_MUMBAI = {
   sCLAM_ADDRESS: '0xa632187432B40c643560C62407fE9f4A79F6a232',
@@ -32,7 +32,7 @@ const POLYGON_MUMBAI = {
 };
 
 export const getAddresses = (networkID: number) => {
-  if (networkID === Networks.RINKEBY) return RINKEBY;
+  if (networkID === Networks.POLYGON_MAINNET) return POLYGON_MAINNET;
   if (networkID === Networks.POLYGON_MUMBAI) return POLYGON_MUMBAI;
 
   throw new Error("Network don't support");

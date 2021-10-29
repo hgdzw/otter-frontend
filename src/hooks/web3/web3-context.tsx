@@ -48,11 +48,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
   const [address, setAddress] = useState('');
 
   // FIXME: set to polygon production before launch
-  const [uri, setUri] = useState(
-    chainID === 80001
-      ? 'https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99'
-      : getTestnetURI(),
-  );
+  const [uri, setUri] = useState(chainID === Networks.POLYGON_MAINNET ? getMainnetURI() : getTestnetURI());
   const [provider, setProvider] = useState<JsonRpcProvider>(new StaticJsonRpcProvider(uri));
 
   const [web3Modal] = useState<Web3Modal>(
@@ -63,8 +59,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
           package: WalletConnectProvider,
           options: {
             rpc: {
-              [Networks.AVAX]: getMainnetURI(),
-              [Networks.RINKEBY]: getTestnetURI(),
+              [Networks.POLYGON_MAINNET]: uri,
               [Networks.POLYGON_MUMBAI]: uri,
             },
           },
@@ -103,16 +98,15 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
   const _checkNetwork = (otherChainID: number): Boolean => {
     // FIXME: enable alert after launch
-    // if (Number(otherChainID) !== Networks.AVAX) {
-    //   alert("Please connect your wallet to Avalanche network to use Wonderland!");
-    // }
+    if (Number(otherChainID) !== Networks.POLYGON_MAINNET) {
+      alert('Please switch your wallet to Polygon network to use OtterClam!');
+    }
 
     if (chainID !== otherChainID) {
       console.warn('You are switching networks: ', otherChainID);
-      if (otherChainID === Networks.AVAX || otherChainID === Networks.RINKEBY) {
+      if (otherChainID === Networks.POLYGON_MAINNET || otherChainID === Networks.POLYGON_MUMBAI) {
         setChainID(otherChainID);
-        // otherChainID === Networks.AVAX ? setUri(getMainnetURI()) : setUri(getTestnetURI());
-        setUri(getTestnetURI());
+        otherChainID === Networks.POLYGON_MAINNET ? setUri(getMainnetURI()) : setUri(getTestnetURI());
         return true;
       }
       return false;

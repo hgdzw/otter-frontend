@@ -4,13 +4,12 @@ export const BLOCK_RATE_SECONDS = 2;
 
 export enum Networks {
   UNKNOW = 0,
-  MAINNET = 1,
-  RINKEBY = 4,
+  POLYGON_MAINNET = 137,
   POLYGON_MUMBAI = 80001,
-  AVAX = 43114,
 }
 
 export const RPCURL = {
+  POLYGON_MAINNET: 'https://polygon-rpc.com',
   POLYGON_MUMBAI: 'https://rpc-mumbai.maticvigil.com/v1/f7267a10cbbde8680bd7534bfeb573758ad39a99',
 };
 
