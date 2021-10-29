@@ -98,9 +98,9 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
   const _checkNetwork = (otherChainID: number): Boolean => {
     // FIXME: enable alert after launch
-    if (Number(otherChainID) !== Networks.POLYGON_MAINNET) {
-      alert('Please switch your wallet to Polygon network to use OtterClam!');
-    }
+    // if (Number(otherChainID) !== Networks.POLYGON_MAINNET) {
+    // alert('Please switch your wallet to Polygon network to use OtterClam!');
+    // }
 
     if (chainID !== otherChainID) {
       console.warn('You are switching networks: ', otherChainID);
@@ -126,7 +126,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
 
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error('Wrong network, please switch to avalanche');
+      console.error('Wrong network, please switch to Polygon Mainnet');
       return;
     }
     setAddress(connectedAddress);
