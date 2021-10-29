@@ -18,6 +18,10 @@
     border-radius: 20px;
     clip: auto;
     overflow: scroll;
+
+    @media screen and (max-width: 596px) {
+      width: 100%;
+    }
   }
 
   &__first-section {

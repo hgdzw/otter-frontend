@@ -14,6 +14,10 @@
   margin-top: 20px;
   font-size: 48px;
 
+  @media screen and (max-width: 596px) {
+    font-size: 36px;
+  }
+
   img {
     width: 32px;
     height: 32px;
@@ -50,6 +54,10 @@
   span {
     color: $otter-blue;
   }
+
+  @media screen and (max-width: 596px) {
+    font-size: 18px;
+  }
 }
 
 .footerLogo {
@@ -60,6 +68,10 @@
   display: flex;
   align-items: center;
   color: $otter-dark;
+  @media screen and (max-width: 596px) {
+    font-size: 36px;
+  }
+
 
   img {
     width: 32px;
