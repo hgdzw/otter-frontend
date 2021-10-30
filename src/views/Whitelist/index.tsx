@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useWeb3Context } from '../../hooks';
-import { checkIDOWhiteList } from '../../store/slices/ido-slice';
+import { checkIDOWhiteList } from '../../store/slices/whitelist-slice';
 import { IReduxState } from '../../store/slices/state.interface';
 import { Button, Link } from '@material-ui/core';
 import styles from './whitelist.module.scss';
@@ -19,9 +19,9 @@ import OtterModIcon from './images/role_icon_mods.png';
 export default function WhiteList() {
   const dispatch = useDispatch();
   const { address, connect, connected, provider, chainID } = useWeb3Context();
-  const isLoading = useSelector<IReduxState, boolean>(state => state.ido.loading);
+  const isLoading = useSelector<IReduxState, boolean>(state => state.whitelist.loading);
   const whitelisted = useSelector<IReduxState, boolean>(state => {
-    return state.ido.whitelisted;
+    return state.whitelist.whitelisted;
   });
 
   const isChecking = useMemo(() => !connected || isLoading, [connected, isLoading]);

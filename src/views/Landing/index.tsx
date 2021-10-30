@@ -70,8 +70,8 @@ function Landing() {
       <Countdown />
       <SecondSection />
       <Footer />
-      <Backdrop open={open} className="ido-check">
-        <div className="ido-container">
+      <Backdrop open={open} className="whitelist-check">
+        <div className="whitelist-container">
           <WhiteList />
           <div className="close-modal-button" onClick={() => setOpen(false)}>
             <img src={CloseIcon} />

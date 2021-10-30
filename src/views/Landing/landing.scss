@@ -6,11 +6,11 @@
   flex-direction: column;
   color: #1d2654;
 
-  .ido-check {
+  .whitelist-check {
     z-index: 10000;
   }
 
-  .ido-container {
+  .whitelist-container {
     background-color: $light-gray100;
     max-width: 800px;
     position: fixed;
