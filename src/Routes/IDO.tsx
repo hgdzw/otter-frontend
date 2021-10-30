@@ -1,8 +1,7 @@
-import WhiteList from '../views/WhiteList';
-import './style.scss';
+import IDO from '../views/IDO';
 
 function App() {
-  return <WhiteList />;
+  return <IDO />;
 }
 
 export default App;

@@ -53,7 +53,7 @@
     },
     {
       "inputs": [],
-      "name": "DAI",
+      "name": "MAI",
       "outputs": [
         {
           "internalType": "address",
@@ -169,7 +169,7 @@
         },
         {
           "internalType": "address",
-          "name": "_dai",
+          "name": "_mai",
           "type": "address"
         },
         {
@@ -228,7 +228,7 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_amountDAI",
+          "name": "_amountMAI",
           "type": "uint256"
         }
       ],

@@ -1,6 +1,6 @@
 import './landing.scss';
 import { useState } from 'react';
-import Header from './components/Header';
+import Header from '../../components/LandingHeader';
 import Stat from './components/Stat';
 import { Backdrop, Button, Link, Paper } from '@material-ui/core';
 import Shell from './shell.png';

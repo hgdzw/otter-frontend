@@ -18,7 +18,6 @@ import OtterModIcon from './images/role_icon_mods.png';
 
 export default function WhiteList() {
   const dispatch = useDispatch();
-
   const { address, connect, connected, provider, chainID } = useWeb3Context();
   const isLoading = useSelector<IReduxState, boolean>(state => state.ido.loading);
   const whitelisted = useSelector<IReduxState, boolean>(state => {

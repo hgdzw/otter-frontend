@@ -1,0 +1,17 @@
+.body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  margin-top: 140px;
+  margin-bottom: 10px;
+  font-size: 48px;
+}
+
+.desc {
+  font-size: 24px;
+  max-width: 730px;
+  text-align: center;
+}

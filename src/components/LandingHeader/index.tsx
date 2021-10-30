@@ -4,7 +4,7 @@ import { Link } from '@material-ui/core';
 import HeaderLogo from './header-logo.png';
 import { DiscordLink, DocsLink, GithubLink, TwitterLink, MediumLink } from 'src/constants';
 
-function Header() {
+export default function LandingHeader() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event: any) => {
@@ -78,5 +78,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
