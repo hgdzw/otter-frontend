@@ -1,4 +1,4 @@
 export const BONDS = {
-  dai: 'dai',
-  dai_clam: 'dai_clam_lp',
+  mai: 'mai',
+  mai_clam: 'mai_clam_lp',
 };

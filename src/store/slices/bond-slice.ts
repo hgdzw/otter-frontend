@@ -50,11 +50,11 @@ export const changeApproval = createAsyncThunk(
 
     let approveTx;
     try {
-      if (bond === BONDS.dai) {
-        approveTx = await reserveContract.approve(addresses.BONDS.DAI, constants.MaxUint256);
+      if (bond === BONDS.mai) {
+        approveTx = await reserveContract.approve(addresses.BONDS.MAI, constants.MaxUint256);
       }
-      if (bond === BONDS.dai_clam) {
-        approveTx = await reserveContract.approve(addresses.BONDS.DAI_CLAM, constants.MaxUint256);
+      if (bond === BONDS.mai_clam) {
+        approveTx = await reserveContract.approve(addresses.BONDS.MAI_CLAM, constants.MaxUint256);
       }
       dispatch(
         fetchPendingTxns({ txnHash: approveTx.hash, text: 'Approving ' + bondName(bond), type: 'approve_' + bond }),
@@ -71,14 +71,14 @@ export const changeApproval = createAsyncThunk(
     let allowance,
       balance = '0';
 
-    if (bond === BONDS.dai) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI);
+    if (bond === BONDS.mai) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.MAI);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatEther(balance);
     }
 
-    if (bond === BONDS.dai_clam) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI_CLAM);
+    if (bond === BONDS.mai_clam) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.MAI_CLAM);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatUnits(balance, 'ether');
     }
@@ -126,8 +126,8 @@ export const calcBondDetails = createAsyncThunk(
     const standardizedDebtRatio = await bondContract.standardizedDebtRatio();
     const debtRatio = standardizedDebtRatio / Math.pow(10, 9);
 
-    const daiPrice = await getTokenPrice('DAI');
-    const rawMarketPrice = (await getMarketPrice(networkID, provider)).mul(daiPrice);
+    const maiPrice = await getTokenPrice('MAI');
+    const rawMarketPrice = (await getMarketPrice(networkID, provider)).mul(maiPrice);
     const marketPrice = formatUnits(rawMarketPrice, 9);
 
     try {
@@ -137,8 +137,8 @@ export const calcBondDetails = createAsyncThunk(
       console.log('error getting bondPriceInUSD', e);
     }
 
-    if (bond === BONDS.dai_clam) {
-      valuation = await bondCalcContract.valuation(addresses.RESERVES.DAI_CLAM, amountInWei);
+    if (bond === BONDS.mai_clam) {
+      valuation = await bondCalcContract.valuation(addresses.RESERVES.MAI_CLAM, amountInWei);
       bondQuote = await bondContract.payoutFor(valuation);
       bondQuote = bondQuote / Math.pow(10, 9);
     } else {

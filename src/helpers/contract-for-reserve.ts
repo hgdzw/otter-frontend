@@ -8,12 +8,12 @@ export const contractForReserve = (
   provider: ethers.Signer | ethers.providers.Provider,
 ) => {
   const addresses = getAddresses(networkID);
-  if (bond === BONDS.dai) {
-    return new ethers.Contract(addresses.RESERVES.DAI, MimReserveContract, provider);
+  if (bond === BONDS.mai) {
+    return new ethers.Contract(addresses.RESERVES.MAI, MimReserveContract, provider);
   }
 
-  if (bond === BONDS.dai_clam) {
-    return new ethers.Contract(addresses.RESERVES.DAI_CLAM, MimTimeReserveContract, provider);
+  if (bond === BONDS.mai_clam) {
+    return new ethers.Contract(addresses.RESERVES.MAI_CLAM, MimTimeReserveContract, provider);
   }
 
   throw Error(`Contract for reserve doesn't support: ${bond}`);

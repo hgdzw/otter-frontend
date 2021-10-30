@@ -36,23 +36,23 @@ export const loadAppDetails = createAsyncThunk(
   'app/loadAppDetails',
   //@ts-ignore
   async ({ networkID, provider }: ILoadAppDetails) => {
-    const daiPrice = await getTokenPrice('DAI');
+    const maiPrice = await getTokenPrice('MAI');
 
     const addresses = getAddresses(networkID);
     const currentBlock = await provider.getBlockNumber();
     const currentBlockTime = (await provider.getBlock(currentBlock)).timestamp;
     const sCLAMContract = new ethers.Contract(addresses.sCLAM_ADDRESS, MemoTokenContract, provider);
     const bondCalculator = new ethers.Contract(addresses.CLAM_BONDING_CALC_ADDRESS, BondingCalcContract, provider);
-    let token = contractForReserve(BONDS.dai, networkID, provider);
-    const daiAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
+    let token = contractForReserve(BONDS.mai, networkID, provider);
+    const maiAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
 
-    token = contractForReserve(BONDS.dai_clam, networkID, provider);
-    const daiClamAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
-    const valuation = await bondCalculator.valuation(addressForAsset(BONDS.dai_clam, networkID), daiClamAmount);
-    const markdown = await bondCalculator.markdown(addressForAsset(BONDS.dai_clam, networkID));
-    const daiClamUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
+    token = contractForReserve(BONDS.mai_clam, networkID, provider);
+    const maiClamAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
+    const valuation = await bondCalculator.valuation(addressForAsset(BONDS.mai_clam, networkID), maiClamAmount);
+    const markdown = await bondCalculator.markdown(addressForAsset(BONDS.mai_clam, networkID));
+    const maiClamUSD = (valuation / Math.pow(10, 9)) * (markdown / Math.pow(10, 18));
 
-    const treasuryBalance = daiAmount / Math.pow(10, 18) + daiClamUSD;
+    const treasuryBalance = maiAmount / Math.pow(10, 18) + maiClamUSD;
 
     const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
     const stakingBalance = await stakingContract.contractBalance();
@@ -67,7 +67,7 @@ export const loadAppDetails = createAsyncThunk(
     const nextRebase = epoch.endTime.toNumber();
 
     const rawMarketPrice = await getMarketPrice(networkID, provider);
-    const marketPrice = Number(((rawMarketPrice.toNumber() / Math.pow(10, 9)) * daiPrice).toFixed(2));
+    const marketPrice = Number(((rawMarketPrice.toNumber() / Math.pow(10, 9)) * maiPrice).toFixed(2));
     const stakingTVL = (stakingBalance * marketPrice) / Math.pow(10, 9);
 
     return {

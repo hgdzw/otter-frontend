@@ -31,7 +31,7 @@ interface IUserBindDetails {
 
 export interface IAccount {
   balances: {
-    dai: string;
+    mai: string;
     sClam: string;
     clam: string;
   };
@@ -68,8 +68,8 @@ export const loadAccountDetails = createAsyncThunk(
 
     const addresses = getAddresses(networkID);
 
-    const daiContract = new ethers.Contract(addresses.DAI_ADDRESS, MimTokenContract, provider);
-    const daiBalance = await daiContract.balanceOf(address);
+    const maiContract = new ethers.Contract(addresses.MAI_ADDRESS, MimTokenContract, provider);
+    const maiBalance = await maiContract.balanceOf(address);
 
     const clamContract = new ethers.Contract(addresses.CLAM_ADDRESS, TimeTokenContract, provider);
     clamBalance = await clamContract.balanceOf(address);
@@ -83,7 +83,7 @@ export const loadAccountDetails = createAsyncThunk(
       balances: {
         sClam: ethers.utils.formatUnits(sClamBalance, 'gwei'),
         clam: ethers.utils.formatUnits(clamBalance, 'gwei'),
-        dai: ethers.utils.formatEther(daiBalance),
+        mai: ethers.utils.formatEther(maiBalance),
       },
       staking: {
         clamStake: +stakeAllowance,
@@ -119,14 +119,14 @@ export const calculateUserBondDetails = createAsyncThunk(
     let allowance,
       balance = '0';
 
-    if (bond === BONDS.dai) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI);
+    if (bond === BONDS.mai) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.MAI);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatEther(balance);
     }
 
-    if (bond === BONDS.dai_clam) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI_CLAM);
+    if (bond === BONDS.mai_clam) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.MAI_CLAM);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatUnits(balance, 'ether');
     }

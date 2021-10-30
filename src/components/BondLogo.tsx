@@ -9,8 +9,8 @@ function BondHeader({ bond }: IBondHeaderProps) {
   const reserveAssetImg = () => {
     if (bond.indexOf('clam') >= 0) {
       return getTokenImage('clam');
-    } else if (bond.indexOf('dai') >= 0) {
-      return getTokenImage('dai');
+    } else if (bond.indexOf('mai') >= 0) {
+      return getTokenImage('mai');
     }
   };
 

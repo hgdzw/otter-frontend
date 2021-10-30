@@ -9,12 +9,12 @@ export const contractForBond = (
 ): ethers.Contract => {
   const addresses = getAddresses(networkID);
 
-  if (bond === BONDS.dai) {
-    return new ethers.Contract(addresses.BONDS.DAI, MimBondContract, provider);
+  if (bond === BONDS.mai) {
+    return new ethers.Contract(addresses.BONDS.MAI, MimBondContract, provider);
   }
 
-  if (bond === BONDS.dai_clam) {
-    return new ethers.Contract(addresses.BONDS.DAI_CLAM, MimTimeBondContract, provider);
+  if (bond === BONDS.mai_clam) {
+    return new ethers.Contract(addresses.BONDS.MAI_CLAM, MimTimeBondContract, provider);
   }
 
   throw Error(`Contract for bond doesn't support: ${bond}`);

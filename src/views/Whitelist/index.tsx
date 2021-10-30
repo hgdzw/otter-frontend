@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useWeb3Context } from '../../hooks';
 import { checkIDOWhiteList } from '../../store/slices/ido-slice';
 import { IReduxState } from '../../store/slices/state.interface';
-import { Box, Button, SvgIcon, Typography, Popper, Paper, Divider, Link, Slide } from '@material-ui/core';
-import styles from './ido.module.scss';
+import { Button, Link } from '@material-ui/core';
+import styles from './whitelist.module.scss';
 import OtterReviewing from './images/otter_reviewing_paper.png';
 import OtterHappy from './images/otter_happy.png';
 import OtterUpset from './images/otter_upset.png';
@@ -16,7 +16,7 @@ import GithubIcon from './images/icon_github.svg';
 import FooterLogo from 'src/components/FooterLogo';
 import OtterModIcon from './images/role_icon_mods.png';
 
-export default function IDO() {
+export default function WhiteList() {
   const dispatch = useDispatch();
 
   const { address, connect, connected, provider, chainID } = useWeb3Context();

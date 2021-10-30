@@ -55,7 +55,7 @@ function Bond({ bond }: IBondProps) {
     setView(newView);
   };
 
-  let bondToken = 'DAI';
+  let bondToken = 'MAI';
 
   return (
     <Fade in={true} mountOnEnter unmountOnExit>

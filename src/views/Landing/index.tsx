@@ -13,7 +13,7 @@ import GithubIcon from './images/icon_github.svg';
 import Otter01 from './images/otter_01.png';
 import CloseIcon from './images/icon_24x24_close.svg';
 import Countdown from './components/Countdown';
-import IDO from '../IDO';
+import WhiteList from '../WhiteList';
 
 function Landing() {
   const [open, setOpen] = useState(false);
@@ -72,7 +72,7 @@ function Landing() {
       <Footer />
       <Backdrop open={open} className="ido-check">
         <div className="ido-container">
-          <IDO />
+          <WhiteList />
           <div className="close-modal-button" onClick={() => setOpen(false)}>
             <img src={CloseIcon} />
           </div>
