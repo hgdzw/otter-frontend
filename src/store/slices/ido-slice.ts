@@ -4,6 +4,7 @@ import { IDOContract } from '../../abi';
 import { setAll } from '../../helpers';
 import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
 import { JsonRpcProvider } from '@ethersproject/providers';
+import axios from 'axios';
 
 const initialState = {
   loading: true,
@@ -25,13 +26,23 @@ export const checkIDOWhiteList = createAsyncThunk(
   //@ts-ignore
   async ({ walletAddress, networkID, provider }: ICheckIDOWhitelist) => {
     const addresses = getAddresses(networkID);
-    const ido = new ethers.Contract(addresses.IDO, IDOContract, provider);
-    const whitelisted = await ido.whiteListed(walletAddress);
+    // const ido = new ethers.Contract(addresses.IDO, IDOContract, provider);
+    // const whitelisted = await ido.whiteListed(walletAddress);
+    try {
+      const whitelisted = await axios.get(
+        'https://us-central1-assetflow-dev.cloudfunctions.net/checkWhiteList?wallet=' + walletAddress,
+      );
 
-    return {
-      whitelisted,
-      loading: false,
-    };
+      return {
+        whitelisted,
+        loading: false,
+      };
+    } catch (error) {
+      return {
+        whitelisted: false,
+        loading: false,
+      };
+    }
   },
 );
 
