@@ -13,6 +13,9 @@
   flex-direction: column;
   align-items: center;
   margin-right: 20px;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .desc {
@@ -20,7 +23,7 @@
   font-weight: 500;
   margin-top: 10px;
   font-size: 14px;
-  padding-right: 5px;
+  // padding-right: 5px;
 }
 
 .days,
@@ -28,21 +31,20 @@
 .minutes,
 .seconds {
   display: inline-flex;
-  &:last-child {
-    margin-right: 0 !important;
-  }
 }
 
 .day,
 .hour,
 .minute,
 .second {
+  &:first-child {
+    margin-right: 10px;
+  }
   border-radius: 8px;
   background: $otter-blue;
   color: white;
   height: 48px;
   width: 36px;
-  margin-right: 10px;
   justify-content: center;
   align-items: center;
   text-align: center;
