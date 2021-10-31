@@ -16,6 +16,10 @@
   &:last-child {
     margin-right: 0;
   }
+
+  @media screen and (max-width: 596px) {
+    margin-right: 12px;
+  }
 }
 
 .desc {
@@ -23,7 +27,6 @@
   font-weight: 500;
   margin-top: 10px;
   font-size: 14px;
-  // padding-right: 5px;
 }
 
 .days,
@@ -39,6 +42,10 @@
 .second {
   &:first-child {
     margin-right: 10px;
+
+    @media screen and (max-width: 596px) {
+      margin-right: 6px;
+    }
   }
   border-radius: 8px;
   background: $otter-blue;
