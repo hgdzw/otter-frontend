@@ -2,14 +2,32 @@
 
 .main {
   width: 100%;
-  height: 258px;
-  background-color: $otter-dark;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
-.title {
-  size: 96px;
-  color: white;
-}
+  .days, .hours, .minutes, .seconds {
+    display: inline-flex;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+
+  .day, .hour, .minute, .second {
+    border-radius: 8px;
+    background: $otter-blue;
+    color: white;
+    height: 48px;
+    width: 36px;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 24px;
+    line-height: 48px;
+    font-family: 'Gilroy';
+    font-weight: 700;
+  }
