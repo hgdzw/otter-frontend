@@ -67,7 +67,9 @@ function Landing() {
         </div>
       </section>
       {/* <Stat /> */}
-      <Countdown />
+      <div className="countdown">
+        <Countdown />
+      </div>
       <SecondSection />
       <Footer />
       <Backdrop open={open} className="whitelist-check">

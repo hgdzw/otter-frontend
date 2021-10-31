@@ -27,34 +27,38 @@ export default function IDO() {
           </div>
 
           <div className={styles.currentMaiBox}>
-            <img src={polygon} className={styles.polygon} />
+            {/* <img src={polygon} className={styles.polygon} /> */}
             <h1>Current Amount (MAI)</h1>
-            <h2>$520,121.00</h2>
+            <h2>$0</h2>
           </div>
         </div>
 
-        <div className={styles.claimClamBox}>
-          <p className={styles.title}>
-            Claim your <span className={styles.highlight}>CLAM</span> to join the Otter Kingdom now!
-          </p>
-          <div className={styles.web3Box}>
-            {connected ? (
-              <div>Connected</div>
-            ) : (
-              <div className={styles.button}>
-                <Button variant="contained" color="primary" size="large" disableElevation onClick={connect}>
-                  Connect Your Wallet
-                </Button>
-              </div>
-            )}
+        {Date.now() > 1635724800000 && (
+          <div className={styles.claimClamBox}>
+            <p className={styles.title}>
+              Claim your <span className={styles.highlight}>CLAM</span> to join the Otter Kingdom now!
+            </p>
+            <div className={styles.web3Box}>
+              {connected ? (
+                <div>Connected</div>
+              ) : (
+                <div className={styles.button}>
+                  <Button variant="contained" color="primary" size="large" disableElevation onClick={connect}>
+                    Connect Your Wallet
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
+        )}
+        <div>
           <p className={styles.learnMore}>
             <a href={MediumLink}>Learn more</a>
           </p>
         </div>
 
         <div className={styles.countdownBox}>
-          <p className={styles.title}>Pre-sale Countdown</p>
+          <p className={styles.countdownTitle}>IDO After</p>
           <Countdown />
         </div>
       </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import App from './App';
 import Landing from './Landing';
 import IDO from './IDO';

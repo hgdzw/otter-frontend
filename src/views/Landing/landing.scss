@@ -171,4 +171,12 @@
     background: 'clear';
     cursor: pointer;
   }
+
+  .countdown {
+    background-color: $otter-dark;
+    height: 254px;
+    display: flex;
+    justify-content: center;
+  }
 }
+
